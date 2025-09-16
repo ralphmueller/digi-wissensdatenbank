@@ -1,0 +1,41 @@
+site_name: Digi-Stammtisch Wissensseite
+site_description: Ein schlankes, mitmachfreundliches Wiki für unseren Digi-Stammtisch
+site_url: https://example.org
+theme:
+  name: material
+  language: de
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - content.tabs
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+plugins:
+  - search
+  - tags
+  - glightbox
+markdown_extensions:
+  - admonition
+  - def_list
+  - attr_list
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences
+nav:
+  - Start: index.md
+  - Glossar:
+      - A wie App: 01-glossar/app.md
+  - Anleitungen:
+      - WhatsApp – Sicher starten: 02-anleitungen/whatsapp-sicher-starten.md
+      - Android – Backup & Wiederherstellung: 02-anleitungen/datensicherung-android.md
+      - Passwörter & Passwortmanager: 02-anleitungen/passwortmanager.md
+  - Artikel:
+      - Cloud verständlich: 03-artikel/cloud-verstaendlich.md
+  - Über uns: about.md
+extra:
+  social:
+    - icon: material/github
+      link: https://github.com/DEIN-ORG/digi-stammtisch-wissen
+      name: Repo
