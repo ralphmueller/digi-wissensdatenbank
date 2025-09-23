@@ -15,6 +15,7 @@ plugins:
   - search
   - tags
   - glightbox
+  - awesome-pages
 markdown_extensions:
   - admonition
   - def_list
@@ -23,17 +24,6 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.superfences
-nav:
-  - Start: index.md
-  - Glossar:
-      - A wie App: 01-glossar/app.md
-  - Anleitungen:
-      - WhatsApp – Sicher starten: 02-anleitungen/whatsapp-sicher-starten.md
-      - Android – Backup & Wiederherstellung: 02-anleitungen/datensicherung-android.md
-      - Passwörter & Passwortmanager: 02-anleitungen/passwortmanager.md
-  - Artikel:
-      - Cloud verständlich: 03-artikel/cloud-verstaendlich.md
-  - Über uns: about.md
 extra:
   social:
     - icon: material/github

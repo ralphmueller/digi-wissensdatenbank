@@ -1,6 +1,6 @@
 ---
 title: Cloud (Begriffserklärung)
-slug: app
+slug: cloud
 type: term
 tags: [cloud, Server, begriff]
 author: Digi-Stammtisch Team

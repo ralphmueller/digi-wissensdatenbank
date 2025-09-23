@@ -1,0 +1,6 @@
+nav:
+  - Start: index.md
+  - "01-glossar"      # Ordnernamen als Strings, ohne Slash
+  - "02-anleitungen"
+  - "03-artikel"
+  - about.md
