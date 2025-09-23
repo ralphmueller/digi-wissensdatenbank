@@ -14,5 +14,5 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
     Nutze Tags wie `smartphone`, `cloud`, `sicherheit` – sie helfen bei der Suche.
 
 ## Beitragen
-- **Beitrag vorschlagen** oder **Änderung melden**: über die Issue-Vorlagen.
-- **Direkt mitschreiben**: Markdown bearbeiten und Pull-Request erstellen.
+
+In Kürze mehr Informationen
