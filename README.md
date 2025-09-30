@@ -11,7 +11,7 @@ Zwei Zielgruppen je Seite: **Für Einsteiger** und **Für Fortgeschrittene** (ü
    ```
 2. **Pakete installieren**:  
    ```bash
-   pip install mkdocs-material mkdocs-glightbox
+   pip install mkdocs-material mkdocs-glightbox mkdocs-awesome-pages-plugin
    ```
 3. **Lokal starten**:  
    ```bash
