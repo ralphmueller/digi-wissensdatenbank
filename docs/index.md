@@ -16,3 +16,5 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 ## Beitragen
 
 In Kürze mehr Informationen
+
+[Google Groups beitreten](https://groups.google.com/g/dg-gersfeld){ .md-button }
