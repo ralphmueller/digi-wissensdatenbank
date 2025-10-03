@@ -31,6 +31,4 @@ related: [app]
 - Alles in einen Ordner → Chaos, fehlende Freigabe-Grenzen
 
 ## Weiterführend
-- [Passwörter & Passwortmanager](../02-anleitungen/passwortmanager.md)
-
-[Leitfaden (PDF)](static/OnlineVideotelefonie.pdf)
+[Passwörter & Passwortmanager](../02-anleitungen/passwortmanager.md)
