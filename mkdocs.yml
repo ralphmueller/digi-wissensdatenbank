@@ -3,6 +3,8 @@ site_description: Ein schlankes, mitmachfreundliches Wiki für unseren Digi-Stam
 site_url: https://example.org
 theme:
   name: material
+  palette: 
+    primary: green
   language: de
   features:
     - navigation.tabs
