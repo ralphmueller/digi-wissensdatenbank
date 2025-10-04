@@ -1,6 +1,6 @@
 site_name: Digi-Stammtisch Wissensseite
 site_description: Ein schlankes, mitmachfreundliches Wiki für unseren Digi-Stammtisch
-site_url: https://example.org
+site_url: https://ralphmueller.github.io/digi-wissensdatenbank
 theme:
   name: material
   palette: 

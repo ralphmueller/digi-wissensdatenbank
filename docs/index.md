@@ -15,6 +15,6 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 ## Beitragen
 
-In Kürze mehr Informationen
+In Kürze mehr Informationen. Gerne könnt ihr weitere Glossarbegriffe anfragen! 
 
 [Google Gruppe beitreten](https://groups.google.com/g/dg-gersfeld){ .md-button }
