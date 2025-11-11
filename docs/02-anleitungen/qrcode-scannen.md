@@ -2,7 +2,7 @@
 title: QR-Code Scannen
 slug: datensicherung-android
 type: howto
-tags: [smartphone, backup, cloud]
+tags: [smartphone, kamera, qr-code]
 author: Digi-Stammtisch Team
 updated: 2025-10-27
 status: published

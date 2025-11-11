@@ -25,5 +25,3 @@ Typische Merkmale einer **Cloud**:
 * **Beispiele**: Dropbox (Dateien speichern), Google Docs (Texte bearbeiten), Microsoft 365 (Office-Anwendungen).
 
 👉 Für Laien kann man sagen: **Die Cloud ist wie eine externe Festplatte im Internet**, die zusätzlich oft noch Programme und Rechenleistung mitliefert.
-
-Soll ich dir auch eine **vereinfachte Erklärung für Anfänger** (z. B. für deinen Digi-Stammtisch) formulieren?
