@@ -16,7 +16,7 @@ status: published
 
 **SMTP** steht für Simple Mail Transfer Protocol und ist das Standardprotokoll für das Senden und Weiterleiten von E-Mails über Netzwerke wie das Internet. Es ist für den Versand verantwortlich und arbeitet mit anderen Protokollen wie POP3 oder IMAP zusammen, um das Abrufen von E-Mails zu ermöglichen. SMTP-Server, auch Postausgangsserver genannt, übermitteln und verifizieren die E-Mails, bevor sie an den Empfänger-Mailserver weitergeleitet werden. 
 
-Wer mehr wissen möchte
+Wer mehr wissen möchte:
 
 [Wikipedia IMAP](https://de.wikipedia.org/wiki/Internet_Message_Access_Protocol)
 

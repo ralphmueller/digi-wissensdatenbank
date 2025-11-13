@@ -1,5 +1,5 @@
 ---
-title: App (Begriffserklärung)
+title: App
 slug: app
 type: term
 tags: [smartphone, begriff]

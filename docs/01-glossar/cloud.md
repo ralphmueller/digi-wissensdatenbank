@@ -1,5 +1,5 @@
 ---
-title: Cloud (Begriffserklärung)
+title: Cloud
 slug: cloud
 type: term
 tags: [cloud, Server, begriff]

@@ -1,5 +1,5 @@
 ---
-title: Emergeny Contact / Notfall Kontakt (Begriffserklärung)
+title: Emergeny Contact / Notfall Kontakt
 slug: emergency-contact
 type: term
 tags: [smartphone, notfall, feature]

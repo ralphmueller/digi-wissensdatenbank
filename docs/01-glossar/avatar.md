@@ -1,5 +1,5 @@
 ---
-title: Avatar (Begriffserklärung)
+title: Avatar
 slug: app
 type: term
 tags: [begriff]
