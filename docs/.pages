@@ -3,4 +3,5 @@ nav:
   - "01-glossar"      # Ordnernamen als Strings, ohne Slash
   - "02-anleitungen"
   - "03-artikel"
+  - Schlagwörter: tags.md 
   - about.md

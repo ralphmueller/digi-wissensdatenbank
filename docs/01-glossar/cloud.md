@@ -2,7 +2,7 @@
 title: Cloud
 slug: cloud
 type: term
-tags: [cloud, Server, begriff]
+tags: [cloud, server, begriff]
 author: Digi-Stammtisch Team
 updated: 2025-09-15
 status: published

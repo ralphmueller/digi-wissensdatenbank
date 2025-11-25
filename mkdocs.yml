@@ -29,5 +29,5 @@ markdown_extensions:
 extra:
   social:
     - icon: material/github
-      link: https://github.com/DEIN-ORG/digi-stammtisch-wissen
+      link: https://ralphmueller.github.io/digi-wissensdatenbank
       name: Repo

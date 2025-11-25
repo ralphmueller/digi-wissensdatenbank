@@ -2,7 +2,7 @@
 title: Notfallkontakt iPhone einrichten
 slug: emergency-contact-iphone
 type: how-to
-tags: [iphone, Emergency Contact, Notfall Kontakt, smartphone]
+tags: [iphone, emergency-contact, notfall kontakt, smartphone]
 author: Digi-Stammtisch Team
 updated: 2025-09-15
 status: published

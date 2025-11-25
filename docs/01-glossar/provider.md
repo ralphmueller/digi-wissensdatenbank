@@ -2,7 +2,7 @@
 title: Provider (IT)
 slug: sserver
 type: term
-tags: [Internet, Netzwerk, Online-Dienst, Kommunikation, Infrastruktur]
+tags: [internet, netzwerk, online-dienst, kommunikation, infrastruktur]
 author: Digi-Stammtisch Team
 updated: 2025-11-25
 status: published

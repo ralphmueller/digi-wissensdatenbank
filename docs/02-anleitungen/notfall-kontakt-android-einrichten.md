@@ -2,7 +2,7 @@
 title: Notfallkontakt Android Phone einrichten
 slug: emergency-contact-android
 type: how-to
-tags: [android, Emergency Contact, Notfall Kontakt, smartphone]
+tags: [android, emergency-contact, notfall kontakt, smartphone]
 author: Digi-Stammtisch Team
 updated: 2025-09-15
 status: published

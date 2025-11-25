@@ -2,7 +2,7 @@
 title: Videokonferenzen
 slug: video-conferencing
 type: article
-tags: [zoom, google-meet, whatsapp]
+tags: [zoom, google-meet, whatsapp, vortrag]
 author: Susan Iwai
 updated: 2025-09-30
 status: published

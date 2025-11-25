@@ -2,7 +2,7 @@
 title: Email auf dem Smartphone
 slug: email-smartphone
 type: article
-tags: [android, smartphone, ios, email]
+tags: [android, smartphone, ios, email, vortrag]
 author: Veronika Hofmann
 updated: 2025-11-11
 status: published

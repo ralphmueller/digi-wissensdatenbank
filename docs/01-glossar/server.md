@@ -1,6 +1,6 @@
 ---
 title: Server (IT)
-slug: sserver
+slug: server
 type: term
 tags: [internet, internet-dienste, internet-resourcen, browser]
 author: Digi-Stammtisch Team
