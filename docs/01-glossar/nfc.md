@@ -35,6 +35,6 @@ status: published
 
 👉 **Merksatz:** *NFC ist wie ein digitaler Handschlag – kurz, nah und praktisch.*
 
-Mehr dazu: [Near Field Communication](https://de.wikipedia.org/wiki/Near_Field_Communication)
+Mehr dazu auf Wikipedia: [Near Field Communication](https://de.wikipedia.org/wiki/Near_Field_Communication)
 
 ![Zahlterminal](static/zahlterminal.jpg)
