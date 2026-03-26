@@ -49,7 +49,7 @@ Ein agentisches System würde dann:
 Agentic AI steckt schon heute in ersten Produkten:
 
 * **KI-Assistenten**, die deinen Kalender verwalten und Termine buchen
-* **Coding-Assistenten** (wie GitHub Copilot), die ganze Programmteile selbst schreiben, testen und verbessern
+* **Coding-Assistenten** (wie Claude Code oder GitHub Copilot), die ganze Programmteile selbst schreiben, testen und verbessern
 * **Kundenservice-Bots**, die Bestellungen nicht nur beantworten, sondern direkt stornieren oder umbuchen
 * **Recherche-Tools**, die selbstständig Webseiten durchsuchen und Berichte erstellen
 
