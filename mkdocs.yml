@@ -13,6 +13,8 @@ theme:
     - content.code.copy
     - search.suggest
     - search.highlight
+hooks:
+  - hooks.py
 plugins:
   - search
   - tags

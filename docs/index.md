@@ -13,6 +13,8 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 !!! tip "Schnell gefunden"
     Nutze Tags wie `smartphone`, `cloud`, `sicherheit` – sie helfen bei der Suche.
 
+<!-- RECENT_ENTRIES -->
+
 ## Beitragen
 
 In Kürze mehr Informationen. Gerne könnt ihr weitere Glossarbegriffe anfragen! 
