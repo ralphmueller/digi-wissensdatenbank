@@ -17,6 +17,8 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 ## Mitmachen
 
+**Nächster Termin:** 28. April 2026 um 18:30 Uhr
+
 [Google Gruppe beitreten](https://groups.google.com/g/dg-gersfeld){ .md-button }
 
 ## Beitragen
