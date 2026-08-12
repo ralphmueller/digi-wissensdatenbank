@@ -17,7 +17,7 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 ## Mitmachen
 
-**Nächster Termin:** 26. August 2026 um 18:30 Uhr
+**Nächster Termin:** Dienstag, 25. August 2026 um 18:30 Uhr
 
 [Google Gruppe beitreten](https://groups.google.com/g/dg-gersfeld){ .md-button }
 
