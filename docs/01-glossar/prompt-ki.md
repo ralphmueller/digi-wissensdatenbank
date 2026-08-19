@@ -6,6 +6,7 @@ tags: [künstliche intelligenz, anweisung, eingabe]
 author: Digi-Stammtisch Team
 updated: 2025-09-17
 status: published
+related: [prompt-engineering]
 ---
 
 **Prompt (KI)** ist die Eingabe oder Anweisung, die man einer Künstlichen Intelligenz gibt, um ein Ergebnis zu erzeugen.  
@@ -25,3 +26,7 @@ Typische Prompt-Bausteine:
 * Beispiele: „Zum Beispiel so: …“
 
 Kurz gesagt: Der Prompt ist die „Frage“ oder „Aufgabe“, die der KI gestellt wird.
+
+## Weiterführend
+
+- [Vom einfachen Auftrag zum guten Prompt](../03-artikel/prompt-engineering.md) – ausführlicher Artikel mit Praxisbeispiel
