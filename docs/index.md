@@ -8,19 +8,23 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 - Nutze die **Suche** oben rechts.
 - Stöbere über die Navigation.
-- **Mitmachen?** → Siehe unten „Beitragen“.
+- **Mitmachen?** → Siehe unten „Nächste Termine“.
 
 !!! tip "Schnell gefunden"
     Nutze Tags wie `smartphone`, `cloud`, `sicherheit` – sie helfen bei der Suche.
 
 <!-- RECENT_ENTRIES -->
 
-## Mitmachen
+## Nächste Termine
 
-**Nächster Termin:** Dienstag, 29. September 2026 um 18:30 Uhr
+### Stammtisch für Digitales
 
-[Google Gruppe beitreten](https://groups.google.com/g/dg-gersfeld){ .md-button }
+**Dienstag, 29. September 2026 um 18:30 Uhr**
 
-## Beitragen
+### Einzelberatung
 
-In Kürze mehr Informationen. Gerne könnt ihr weitere Glossarbegriffe anfragen!
+**Mittwoch, 9. September 2026, 14:00–16:00 Uhr**
+
+[Mehr Informationen](03-artikel/stammtisch-und-einzelberatung.md){ .md-button .md-button--primary }
+
+[Google Gruppe beitreten](https://groups.google.com/g/dg-gersfeld){ .md-button .md-button--primary }
