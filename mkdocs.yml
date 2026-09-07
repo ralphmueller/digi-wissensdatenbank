@@ -6,6 +6,7 @@ theme:
   palette: 
     primary: green
   language: de
+  font: false          # keine Google Fonts — DSGVO, siehe docs/datenschutz.md
   features:
     - navigation.tabs
     - navigation.indexes
