@@ -11,7 +11,7 @@ def on_page_markdown(markdown, page, config, **kwargs):
         return markdown
 
     docs_dir = Path(config["docs_dir"])
-    skip_names = {"index.md", "tags.md", "about.md"}
+    skip_names = {"index.md", "tags.md", "about.md", "impressum.md", "datenschutz.md"}
     skip_dirs = {"99-intern"}
 
     entries = []
