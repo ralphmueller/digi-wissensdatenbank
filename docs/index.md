@@ -23,7 +23,7 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 ### Einzelberatung
 
-**Mittwoch, 9. September 2026, 14:00–16:00 Uhr**
+**Mittwoch, 23. September 2026, 14:00–16:00 Uhr**
 
 [Mehr Informationen](03-artikel/stammtisch-und-einzelberatung.md){ .md-button .md-button--primary }
 
