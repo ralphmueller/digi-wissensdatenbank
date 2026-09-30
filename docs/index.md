@@ -21,6 +21,8 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 **Dienstag, 27. Oktober 2026 um 18:30 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
 
+Thema: **GPS-Daten und Smartphone** — WhatsApp, Fotos, Google Maps
+
 ### Einzelberatung
 
 **Mittwoch, 7. Oktober 2026, 14:00–16:00 Uhr**
