@@ -1,0 +1,487 @@
+﻿Buchungstag;Valuta;Auftraggeber/Empfaenger;Buchungstext;Verwendungszweck;Betrag;Waehrung;Saldo
+01.01.2025;01.01.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;4200,37
+01.01.2025;01.01.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;4131,97
+01.01.2025;01.01.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;4031,97
+01.01.2025;01.01.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;3881,97
+02.01.2025;02.01.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 01/2025;-165,00;EUR;3716,97
+02.01.2025;02.01.2025;Sichere Zukunft Versicherung AG;Lastschrift;Wohngebaeudeversicherung 2025;-512,30;EUR;3204,67
+02.01.2025;02.01.2025;Sichere Zukunft Versicherung AG;Lastschrift;Kfz-Versicherung MH-TB 123 2025;-638,60;EUR;2566,07
+03.01.2025;03.01.2025;ARAL Station;Kartenzahlung;Tankstelle;-76,18;EUR;2489,89
+03.01.2025;03.01.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 01/2025 Vertragskonto 7001234;-109,00;EUR;2380,89
+03.01.2025;03.01.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-117,54;EUR;2263,35
+03.01.2025;03.01.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 01/2025 Vertragskonto 7001235;-148,00;EUR;2115,35
+06.01.2025;06.01.2025;Familienkasse;Gutschrift;Kindergeld 01/2025 KG-Nr 123FK456789;255,00;EUR;2370,35
+06.01.2025;06.01.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-24,82;EUR;2345,53
+06.01.2025;06.01.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-107,52;EUR;2238,01
+08.01.2025;08.01.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-36,80;EUR;2201,21
+08.01.2025;08.01.2025;Hauptzollamt Beispiel;Lastschrift;Kfz-Steuer MH-TB 123;-164,00;EUR;2037,21
+10.01.2025;10.01.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;1992,26
+10.01.2025;10.01.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-110,99;EUR;1881,27
+10.01.2025;10.01.2025;Sichere Zukunft Versicherung AG;Lastschrift;Privathaftpflicht + Hausrat 2025;-187,40;EUR;1693,87
+13.01.2025;13.01.2025;Gasthaus Zum Adler;Kartenzahlung;Gasthaus Zum Adler;-25,44;EUR;1668,43
+13.01.2025;13.01.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;1638,45
+13.01.2025;13.01.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-96,48;EUR;1541,97
+14.01.2025;14.01.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-46,64;EUR;1495,33
+15.01.2025;15.01.2025;Rundfunk ARD ZDF DRadio;Lastschrift;Rundfunkbeitrag Quartal Beitragsnr 123456789;-55,08;EUR;1440,25
+15.01.2025;15.01.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 01/2025;-62,00;EUR;1378,25
+17.01.2025;17.01.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;1364,26
+17.01.2025;17.01.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-127,99;EUR;1236,27
+20.01.2025;20.01.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-23,55;EUR;1212,72
+20.01.2025;20.01.2025;Shell Station;Kartenzahlung;Tankstelle;-57,34;EUR;1155,38
+20.01.2025;20.01.2025;Shell Station;Kartenzahlung;Tankstelle;-75,66;EUR;1079,72
+20.01.2025;20.01.2025;Deichmann;Kartenzahlung;Kleidung;-104,77;EUR;974,95
+20.01.2025;20.01.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;774,95
+20.01.2025;20.01.2025;Gemeinde Musterhausen;Lastschrift;Abfallgebuehren 2025;-236,00;EUR;538,95
+20.01.2025;20.01.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-300,00;EUR;238,95
+21.01.2025;21.01.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-8658437;-42,73;EUR;196,22
+22.01.2025;22.01.2025;Apotheke am Markt;Kartenzahlung;Apotheke;-19,81;EUR;176,41
+22.01.2025;22.01.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-97,38;EUR;79,03
+22.01.2025;22.01.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;-70,97
+27.01.2025;27.01.2025;Gasthaus Zum Adler;Kartenzahlung;Gasthaus Zum Adler;-45,47;EUR;-116,44
+27.01.2025;27.01.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-109,62;EUR;-226,06
+28.01.2025;28.01.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 01/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;2958,56
+30.01.2025;30.01.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 01/2025 Sabine Beispiel Teilzeit;1523,80;EUR;4482,36
+30.01.2025;30.01.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;3194,86
+03.02.2025;03.02.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;3176,86
+03.02.2025;03.02.2025;ARAL Station;Kartenzahlung;Tankstelle;-60,59;EUR;3116,27
+03.02.2025;03.02.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;3047,87
+03.02.2025;03.02.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;2947,87
+03.02.2025;03.02.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 02/2025 Vertragskonto 7001234;-109,00;EUR;2838,87
+03.02.2025;03.02.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-127,18;EUR;2711,69
+03.02.2025;03.02.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 02/2025 Vertragskonto 7001235;-148,00;EUR;2563,69
+03.02.2025;03.02.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;2413,69
+03.02.2025;03.02.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 02/2025;-165,00;EUR;2248,69
+03.02.2025;03.02.2025;Reisebuero Sonnenschein;Ueberweisung;Anzahlung Buchung 2025-0815 Ferienwohnung Gardasee;-480,00;EUR;1768,69
+05.02.2025;05.02.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-200,00;EUR;1568,69
+07.02.2025;07.02.2025;Familienkasse;Gutschrift;Kindergeld 02/2025 KG-Nr 123FK456789;255,00;EUR;1823,69
+07.02.2025;07.02.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-91,61;EUR;1732,08
+10.02.2025;10.02.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-22,01;EUR;1710,07
+10.02.2025;10.02.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;1665,12
+10.02.2025;10.02.2025;ARAL Station;Kartenzahlung;Tankstelle;-72,07;EUR;1593,05
+11.02.2025;11.02.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-75,84;EUR;1517,21
+12.02.2025;12.02.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;1487,23
+14.02.2025;14.02.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-87,31;EUR;1399,92
+17.02.2025;17.02.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;1385,93
+17.02.2025;17.02.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 02/2025;-62,00;EUR;1323,93
+17.02.2025;17.02.2025;Gemeinde Musterhausen;Lastschrift;Grundsteuer B Kassenzeichen 4200.1234;-96,40;EUR;1227,53
+17.02.2025;17.02.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-119,33;EUR;1108,20
+17.02.2025;17.02.2025;Zweckverband Wasser;Lastschrift;Abschlag Wasser/Abwasser;-134,00;EUR;974,20
+20.02.2025;20.02.2025;ARAL Station;Kartenzahlung;Tankstelle;-61,98;EUR;912,22
+20.02.2025;20.02.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;712,22
+21.02.2025;21.02.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-18,69;EUR;693,53
+21.02.2025;21.02.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-29,42;EUR;664,11
+24.02.2025;24.02.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-33,36;EUR;630,75
+24.02.2025;24.02.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-54,85;EUR;575,90
+24.02.2025;24.02.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-67,82;EUR;508,08
+24.02.2025;24.02.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-110,50;EUR;397,58
+24.02.2025;24.02.2025;Zalando SE;Kartenzahlung;Kleidung;-139,95;EUR;257,63
+26.02.2025;26.02.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-100,00;EUR;157,63
+28.02.2025;28.02.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 02/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;3342,25
+28.02.2025;28.02.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 02/2025 Sabine Beispiel Teilzeit;1523,80;EUR;4866,05
+28.02.2025;28.02.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;3578,55
+03.03.2025;03.03.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;3560,55
+03.03.2025;03.03.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;3492,15
+03.03.2025;03.03.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;3392,15
+03.03.2025;03.03.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 03/2025 Vertragskonto 7001234;-109,00;EUR;3283,15
+03.03.2025;03.03.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-124,89;EUR;3158,26
+03.03.2025;03.03.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 03/2025 Vertragskonto 7001235;-148,00;EUR;3010,26
+03.03.2025;03.03.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;2860,26
+03.03.2025;03.03.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 03/2025;-165,00;EUR;2695,26
+04.03.2025;04.03.2025;Stadtwerke Musterhausen;Gutschrift;Jahresabrechnung Strom 2024 Guthaben;86,40;EUR;2781,66
+04.03.2025;04.03.2025;Stadtwerke Musterhausen;Lastschrift;Jahresabrechnung Gas 2024 Nachzahlung;-214,70;EUR;2566,96
+05.03.2025;05.03.2025;Familienkasse;Gutschrift;Kindergeld 03/2025 KG-Nr 123FK456789;255,00;EUR;2821,96
+05.03.2025;05.03.2025;Shell Station;Kartenzahlung;Tankstelle;-61,25;EUR;2760,71
+05.03.2025;05.03.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-80,94;EUR;2679,77
+06.03.2025;06.03.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-124,78;EUR;2554,99
+10.03.2025;10.03.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-35,79;EUR;2519,20
+10.03.2025;10.03.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;2474,25
+10.03.2025;10.03.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-74,95;EUR;2399,30
+10.03.2025;10.03.2025;C&A;Kartenzahlung;Kleidung;-80,37;EUR;2318,93
+10.03.2025;10.03.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-250,00;EUR;2068,93
+12.03.2025;12.03.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;2038,95
+12.03.2025;12.03.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-6881168;-76,79;EUR;1962,16
+13.03.2025;13.03.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-130,12;EUR;1832,04
+14.03.2025;14.03.2025;TUEV Sued;Kartenzahlung;HU Pkw MH-TB 123;-148,50;EUR;1683,54
+17.03.2025;17.03.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;1669,55
+17.03.2025;17.03.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-27,27;EUR;1642,28
+17.03.2025;17.03.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-35,37;EUR;1606,91
+17.03.2025;17.03.2025;Kino Musterhausen;Kartenzahlung;Kino Musterhausen;-38,03;EUR;1568,88
+17.03.2025;17.03.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-43,95;EUR;1524,93
+17.03.2025;17.03.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 03/2025;-62,00;EUR;1462,93
+17.03.2025;17.03.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-82,69;EUR;1380,24
+20.03.2025;20.03.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;1180,24
+21.03.2025;21.03.2025;ARAL Station;Kartenzahlung;Tankstelle;-61,95;EUR;1118,29
+24.03.2025;24.03.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-41,24;EUR;1077,05
+24.03.2025;24.03.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-100,00;EUR;977,05
+24.03.2025;24.03.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-130,76;EUR;846,29
+27.03.2025;27.03.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-62,86;EUR;783,43
+28.03.2025;28.03.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 03/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;3968,05
+31.03.2025;31.03.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 03/2025 Sabine Beispiel Teilzeit;1523,80;EUR;5491,85
+31.03.2025;31.03.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;4204,35
+01.04.2025;01.04.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;4186,35
+01.04.2025;01.04.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;4117,95
+01.04.2025;01.04.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;4017,95
+01.04.2025;01.04.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-131,60;EUR;3886,35
+01.04.2025;01.04.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;3736,35
+02.04.2025;02.04.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 04/2025;-165,00;EUR;3571,35
+03.04.2025;03.04.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 04/2025 Vertragskonto 7001234;-109,00;EUR;3462,35
+03.04.2025;03.04.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 04/2025 Vertragskonto 7001235;-148,00;EUR;3314,35
+07.04.2025;07.04.2025;Familienkasse;Gutschrift;Kindergeld 04/2025 KG-Nr 123FK456789;255,00;EUR;3569,35
+07.04.2025;07.04.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-66,54;EUR;3502,81
+07.04.2025;07.04.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-127,15;EUR;3375,66
+09.04.2025;09.04.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-39,13;EUR;3336,53
+09.04.2025;09.04.2025;Schornsteinfeger Klein;Ueberweisung;Rechnung 2025-118 Feuerstaettenschau;-78,50;EUR;3258,03
+09.04.2025;09.04.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-114,23;EUR;3143,80
+10.04.2025;10.04.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;3098,85
+11.04.2025;11.04.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;3084,86
+11.04.2025;11.04.2025;Pizzeria Da Mario;Kartenzahlung;Pizzeria Da Mario;-25,27;EUR;3059,59
+11.04.2025;11.04.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-44,46;EUR;3015,13
+11.04.2025;11.04.2025;Intersport;Kartenzahlung;Sportschuhe Kinder;-59,95;EUR;2955,18
+11.04.2025;11.04.2025;ARAL Station;Kartenzahlung;Tankstelle;-80,42;EUR;2874,76
+11.04.2025;11.04.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-118,15;EUR;2756,61
+14.04.2025;14.04.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;2726,63
+14.04.2025;14.04.2025;DB Vertrieb GmbH;Kartenzahlung;Osterferien Tickets Hamburg;-187,60;EUR;2539,03
+15.04.2025;15.04.2025;Hamburger Hochbahn AG;Kartenzahlung;HVV Gruppenkarte;-16,80;EUR;2522,23
+15.04.2025;15.04.2025;Rundfunk ARD ZDF DRadio;Lastschrift;Rundfunkbeitrag Quartal Beitragsnr 123456789;-55,08;EUR;2467,15
+15.04.2025;15.04.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 04/2025;-62,00;EUR;2405,15
+15.04.2025;15.04.2025;Miniatur Wunderland Hamburg;Kartenzahlung;Eintritt 2 Erw. 1 Kind;-64,00;EUR;2341,15
+16.04.2025;16.04.2025;Fischbraterei Landungsbruecken;Kartenzahlung;Hamburg;-38,60;EUR;2302,55
+16.04.2025;16.04.2025;Hotel Hafenblick Hamburg;Kartenzahlung;2 Naechte;-298,00;EUR;2004,55
+21.04.2025;21.04.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-123,49;EUR;1881,06
+21.04.2025;21.04.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;1731,06
+21.04.2025;21.04.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;1531,06
+22.04.2025;22.04.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-119,31;EUR;1411,75
+22.04.2025;22.04.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-250,00;EUR;1161,75
+23.04.2025;23.04.2025;Zalando SE;Kartenzahlung;Kleidung;-108,61;EUR;1053,14
+24.04.2025;24.04.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-27,77;EUR;1025,37
+24.04.2025;24.04.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-41,11;EUR;984,26
+25.04.2025;25.04.2025;Kino Musterhausen;Kartenzahlung;Kino Musterhausen;-72,72;EUR;911,54
+28.04.2025;28.04.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 04/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;4096,16
+28.04.2025;28.04.2025;Shell Station;Kartenzahlung;Tankstelle;-57,38;EUR;4038,78
+28.04.2025;28.04.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-7150285;-82,65;EUR;3956,13
+30.04.2025;30.04.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 04/2025 Sabine Beispiel Teilzeit;1523,80;EUR;5479,93
+30.04.2025;30.04.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;4192,43
+01.05.2025;01.05.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;4174,43
+01.05.2025;01.05.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;4106,03
+01.05.2025;01.05.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;4006,03
+01.05.2025;01.05.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-140,61;EUR;3865,42
+01.05.2025;01.05.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;3715,42
+02.05.2025;02.05.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 05/2025;-165,00;EUR;3550,42
+05.05.2025;05.05.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-84,15;EUR;3466,27
+05.05.2025;05.05.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 05/2025 Vertragskonto 7001234;-109,00;EUR;3357,27
+05.05.2025;05.05.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 05/2025 Vertragskonto 7001235;-148,00;EUR;3209,27
+07.05.2025;07.05.2025;Familienkasse;Gutschrift;Kindergeld 05/2025 KG-Nr 123FK456789;255,00;EUR;3464,27
+09.05.2025;09.05.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-24,63;EUR;3439,64
+09.05.2025;09.05.2025;Gasthaus Zum Adler;Kartenzahlung;Gasthaus Zum Adler;-32,27;EUR;3407,37
+09.05.2025;09.05.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-62,10;EUR;3345,27
+12.05.2025;12.05.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;3315,29
+12.05.2025;12.05.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-38,98;EUR;3276,31
+12.05.2025;12.05.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;3231,36
+12.05.2025;12.05.2025;ARAL Station;Kartenzahlung;Tankstelle;-58,21;EUR;3173,15
+12.05.2025;12.05.2025;Shell Station;Kartenzahlung;Tankstelle;-61,44;EUR;3111,71
+12.05.2025;12.05.2025;Heizungsbau Roth GmbH;Ueberweisung;Rechnung 25-0442 Wartung Gasbrennwert;-189,21;EUR;2922,50
+13.05.2025;13.05.2025;Deichmann;Kartenzahlung;Kleidung;-48,22;EUR;2874,28
+15.05.2025;15.05.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-56,45;EUR;2817,83
+15.05.2025;15.05.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 05/2025;-62,00;EUR;2755,83
+15.05.2025;15.05.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-87,56;EUR;2668,27
+15.05.2025;15.05.2025;Gemeinde Musterhausen;Lastschrift;Grundsteuer B Kassenzeichen 4200.1234;-96,40;EUR;2571,87
+15.05.2025;15.05.2025;Zweckverband Wasser;Lastschrift;Abschlag Wasser/Abwasser;-134,00;EUR;2437,87
+19.05.2025;19.05.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;2423,88
+19.05.2025;19.05.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-45,23;EUR;2378,65
+19.05.2025;19.05.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-63,00;EUR;2315,65
+19.05.2025;19.05.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-300,00;EUR;2015,65
+20.05.2025;20.05.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;1815,65
+21.05.2025;21.05.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-57,65;EUR;1758,00
+21.05.2025;21.05.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-88,09;EUR;1669,91
+22.05.2025;22.05.2025;Spielwaren Kunterbunt;Kartenzahlung;Geburtstag Lena;-74,99;EUR;1594,92
+22.05.2025;22.05.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;1444,92
+26.05.2025;26.05.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-76,68;EUR;1368,24
+27.05.2025;27.05.2025;ARAL Station;Kartenzahlung;Tankstelle;-66,21;EUR;1302,03
+28.05.2025;28.05.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 05/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;4486,65
+30.05.2025;30.05.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 05/2025 Sabine Beispiel Teilzeit;1523,80;EUR;6010,45
+30.05.2025;30.05.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;4722,95
+02.06.2025;02.06.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;4704,95
+02.06.2025;02.06.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;4636,55
+02.06.2025;02.06.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;4536,55
+02.06.2025;02.06.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-106,30;EUR;4430,25
+02.06.2025;02.06.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;4280,25
+02.06.2025;02.06.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 06/2025;-165,00;EUR;4115,25
+03.06.2025;03.06.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 06/2025 Vertragskonto 7001234;-109,00;EUR;4006,25
+03.06.2025;03.06.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 06/2025 Vertragskonto 7001235;-148,00;EUR;3858,25
+05.06.2025;05.06.2025;Familienkasse;Gutschrift;Kindergeld 06/2025 KG-Nr 123FK456789;255,00;EUR;4113,25
+05.06.2025;05.06.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-136,97;EUR;3976,28
+06.06.2025;06.06.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-19,80;EUR;3956,48
+06.06.2025;06.06.2025;Shell Station;Kartenzahlung;Tankstelle;-70,59;EUR;3885,89
+09.06.2025;09.06.2025;Pizzeria Da Mario;Kartenzahlung;Pizzeria Da Mario;-35,57;EUR;3850,32
+09.06.2025;09.06.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-39,51;EUR;3810,81
+10.06.2025;10.06.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-6138004;-36,16;EUR;3774,65
+10.06.2025;10.06.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;3729,70
+10.06.2025;10.06.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-62,52;EUR;3667,18
+10.06.2025;10.06.2025;H&M;Kartenzahlung;Kleidung;-108,01;EUR;3559,17
+12.06.2025;12.06.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;3529,19
+12.06.2025;12.06.2025;ARAL Station;Kartenzahlung;Tankstelle;-72,15;EUR;3457,04
+16.06.2025;16.06.2025;Shell Station;Kartenzahlung;Tankstelle;-61,65;EUR;3395,39
+16.06.2025;16.06.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 06/2025;-62,00;EUR;3333,39
+16.06.2025;16.06.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-64,00;EUR;3269,39
+16.06.2025;16.06.2025;Gasthaus Zum Adler;Kartenzahlung;Kommunion Patenkind Feier;-186,40;EUR;3082,99
+16.06.2025;16.06.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-300,00;EUR;2782,99
+17.06.2025;17.06.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;2769,00
+17.06.2025;17.06.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-52,59;EUR;2716,41
+18.06.2025;18.06.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-85,02;EUR;2631,39
+20.06.2025;20.06.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-22,31;EUR;2609,08
+20.06.2025;20.06.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;2409,08
+23.06.2025;23.06.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-72,85;EUR;2336,23
+23.06.2025;23.06.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-100,00;EUR;2236,23
+23.06.2025;23.06.2025;Bauhaus;Kartenzahlung;Bauhaus Musterhausen;-243,87;EUR;1992,36
+24.06.2025;24.06.2025;Kino Musterhausen;Kartenzahlung;Kino Musterhausen;-55,57;EUR;1936,79
+30.06.2025;30.06.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 06/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;5121,41
+30.06.2025;30.06.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 06/2025 Sabine Beispiel Teilzeit;1523,80;EUR;6645,21
+30.06.2025;30.06.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;5357,71
+30.06.2025;30.06.2025;Reisebuero Sonnenschein;Ueberweisung;Restzahlung Buchung 2025-0815 Ferienwohnung Gardasee;-1420,00;EUR;3937,71
+01.07.2025;01.07.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;3919,71
+01.07.2025;01.07.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;3851,31
+01.07.2025;01.07.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;3751,31
+01.07.2025;01.07.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-144,32;EUR;3606,99
+01.07.2025;01.07.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;3456,99
+02.07.2025;02.07.2025;Shell Station;Kartenzahlung;Tankstelle;-57,15;EUR;3399,84
+02.07.2025;02.07.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 07/2025;-165,00;EUR;3234,84
+03.07.2025;03.07.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 07/2025 Vertragskonto 7001234;-109,00;EUR;3125,84
+03.07.2025;03.07.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 07/2025 Vertragskonto 7001235;-148,00;EUR;2977,84
+07.07.2025;07.07.2025;Familienkasse;Gutschrift;Kindergeld 07/2025 KG-Nr 123FK456789;255,00;EUR;3232,84
+07.07.2025;07.07.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-4539434;-58,03;EUR;3174,81
+07.07.2025;07.07.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-116,49;EUR;3058,32
+08.07.2025;08.07.2025;Apotheke am Markt;Kartenzahlung;Apotheke;-23,03;EUR;3035,29
+09.07.2025;09.07.2025;Deichmann;Kartenzahlung;Kleidung;-64,88;EUR;2970,41
+10.07.2025;10.07.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;2925,46
+11.07.2025;11.07.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-30,86;EUR;2894,60
+11.07.2025;11.07.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-142,52;EUR;2752,08
+14.07.2025;14.07.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;2722,10
+15.07.2025;15.07.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-47,85;EUR;2674,25
+15.07.2025;15.07.2025;Rundfunk ARD ZDF DRadio;Lastschrift;Rundfunkbeitrag Quartal Beitragsnr 123456789;-55,08;EUR;2619,17
+15.07.2025;15.07.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 07/2025;-62,00;EUR;2557,17
+15.07.2025;15.07.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-142,94;EUR;2414,23
+15.07.2025;15.07.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-200,00;EUR;2214,23
+17.07.2025;17.07.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;2200,24
+17.07.2025;17.07.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-88,01;EUR;2112,23
+21.07.2025;21.07.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-18,52;EUR;2093,71
+21.07.2025;21.07.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-27,48;EUR;2066,23
+21.07.2025;21.07.2025;Eiscafe Venezia;Kartenzahlung;Eiscafe Venezia;-30,92;EUR;2035,31
+21.07.2025;21.07.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;1885,31
+21.07.2025;21.07.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;1685,31
+22.07.2025;22.07.2025;Finanzamt Musterhausen;Gutschrift;Erstattung ESt 2024 StNr 012/345/67890;1136,00;EUR;2821,31
+23.07.2025;23.07.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-110,56;EUR;2710,75
+25.07.2025;25.07.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-24,74;EUR;2686,01
+25.07.2025;25.07.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-30,28;EUR;2655,73
+25.07.2025;25.07.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-63,42;EUR;2592,31
+25.07.2025;25.07.2025;ARAL Station;Kartenzahlung;Tankstelle;-66,33;EUR;2525,98
+25.07.2025;25.07.2025;Shell Station;Kartenzahlung;Tankstelle;-73,55;EUR;2452,43
+25.07.2025;25.07.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-77,15;EUR;2375,28
+25.07.2025;25.07.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-102,93;EUR;2272,35
+25.07.2025;25.07.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-138,32;EUR;2134,03
+25.07.2025;25.07.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-140,50;EUR;1993,53
+28.07.2025;28.07.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 07/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;5178,15
+28.07.2025;28.07.2025;Autobahn Brenner Maut;Kartenzahlung;Brennerautobahn;-12,00;EUR;5166,15
+28.07.2025;28.07.2025;ASFINAG Vignette;Kartenzahlung;Digitale 10-Tages-Vignette AT;-12,40;EUR;5153,75
+29.07.2025;29.07.2025;Autostrade per l'Italia;Kartenzahlung;Pedaggio A22 IT;-21,30;EUR;5132,45
+29.07.2025;29.07.2025;Esso Arco;Kartenzahlung;Esso Arco IT;-86,61;EUR;5045,84
+30.07.2025;30.07.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 07/2025 Sabine Beispiel Teilzeit;1523,80;EUR;6569,64
+30.07.2025;30.07.2025;Esso Arco;Kartenzahlung;Esso Arco IT;-35,16;EUR;6534,48
+30.07.2025;30.07.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;5246,98
+31.07.2025;31.07.2025;Conad Riva;Kartenzahlung;Conad Riva IT;-25,81;EUR;5221,17
+01.08.2025;01.08.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;5203,17
+01.08.2025;01.08.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;5134,77
+01.08.2025;01.08.2025;Pizzeria Malcesine;Kartenzahlung;Pizzeria Malcesine IT;-72,24;EUR;5062,53
+01.08.2025;01.08.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;4962,53
+01.08.2025;01.08.2025;Gardaland S.p.A.;Kartenzahlung;Eintritt 3 Personen;-142,50;EUR;4820,03
+01.08.2025;01.08.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;4670,03
+02.08.2025;02.08.2025;Esso Arco;Kartenzahlung;Esso Arco IT;-69,10;EUR;4600,93
+03.08.2025;03.08.2025;Gelateria Riva;Kartenzahlung;Gelateria Riva IT;-28,19;EUR;4572,74
+04.08.2025;04.08.2025;Pizzeria Malcesine;Kartenzahlung;Pizzeria Malcesine IT;-51,02;EUR;4521,72
+04.08.2025;04.08.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 08/2025 Vertragskonto 7001234;-109,00;EUR;4412,72
+04.08.2025;04.08.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 08/2025 Vertragskonto 7001235;-148,00;EUR;4264,72
+04.08.2025;04.08.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 08/2025;-165,00;EUR;4099,72
+05.08.2025;05.08.2025;Pizzeria Malcesine;Kartenzahlung;Pizzeria Malcesine IT;-74,60;EUR;4025,12
+06.08.2025;06.08.2025;Esso Arco;Kartenzahlung;Esso Arco IT;-19,32;EUR;4005,80
+07.08.2025;07.08.2025;Familienkasse;Gutschrift;Kindergeld 08/2025 KG-Nr 123FK456789;255,00;EUR;4260,80
+07.08.2025;07.08.2025;Autobahn Brenner Maut;Kartenzahlung;Brennerautobahn;-12,00;EUR;4248,80
+07.08.2025;07.08.2025;Autostrade per l'Italia;Kartenzahlung;Pedaggio A22 IT;-21,30;EUR;4227,50
+07.08.2025;07.08.2025;Esso Arco;Kartenzahlung;Esso Arco IT;-63,45;EUR;4164,05
+11.08.2025;11.08.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-34,44;EUR;4129,61
+11.08.2025;11.08.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;4084,66
+11.08.2025;11.08.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-115,19;EUR;3969,47
+12.08.2025;12.08.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;3939,49
+13.08.2025;13.08.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-5941865;-24,32;EUR;3915,17
+13.08.2025;13.08.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-143,01;EUR;3772,16
+15.08.2025;15.08.2025;Gasthaus Zum Adler;Kartenzahlung;Gasthaus Zum Adler;-33,88;EUR;3738,28
+15.08.2025;15.08.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 08/2025;-62,00;EUR;3676,28
+15.08.2025;15.08.2025;ARAL Station;Kartenzahlung;Tankstelle;-79,20;EUR;3597,08
+15.08.2025;15.08.2025;Gemeinde Musterhausen;Lastschrift;Grundsteuer B Kassenzeichen 4200.1234;-96,40;EUR;3500,68
+15.08.2025;15.08.2025;Zweckverband Wasser;Lastschrift;Abschlag Wasser/Abwasser;-134,00;EUR;3366,68
+18.08.2025;18.08.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;3352,69
+18.08.2025;18.08.2025;Zalando SE;Kartenzahlung;Kleidung;-58,91;EUR;3293,78
+18.08.2025;18.08.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-61,29;EUR;3232,49
+18.08.2025;18.08.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-68,83;EUR;3163,66
+19.08.2025;19.08.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-112,51;EUR;3051,15
+20.08.2025;20.08.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;2851,15
+20.08.2025;20.08.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-300,00;EUR;2551,15
+21.08.2025;21.08.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-136,64;EUR;2414,51
+25.08.2025;25.08.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-36,07;EUR;2378,44
+26.08.2025;26.08.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;2228,44
+28.08.2025;28.08.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 08/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;5413,06
+28.08.2025;28.08.2025;Schreibwaren Koch;Kartenzahlung;Schulbedarf;-67,35;EUR;5345,71
+01.09.2025;01.09.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 08/2025 Sabine Beispiel Teilzeit;1523,80;EUR;6869,51
+01.09.2025;01.09.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;6851,51
+01.09.2025;01.09.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;6783,11
+01.09.2025;01.09.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-92,59;EUR;6690,52
+01.09.2025;01.09.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;6590,52
+01.09.2025;01.09.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;6440,52
+01.09.2025;01.09.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;5153,02
+02.09.2025;02.09.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 09/2025;-165,00;EUR;4988,02
+03.09.2025;03.09.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 09/2025 Vertragskonto 7001234;-109,00;EUR;4879,02
+03.09.2025;03.09.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 09/2025 Vertragskonto 7001235;-148,00;EUR;4731,02
+05.09.2025;05.09.2025;Familienkasse;Gutschrift;Kindergeld 09/2025 KG-Nr 123FK456789;255,00;EUR;4986,02
+05.09.2025;05.09.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-62,87;EUR;4923,15
+08.09.2025;08.09.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-99,76;EUR;4823,39
+08.09.2025;08.09.2025;Zahnarztpraxis Dr. Lorenz;Ueberweisung;Rechnung Zahnreinigung + Fuellung Eigenanteil;-214,00;EUR;4609,39
+09.09.2025;09.09.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-22,61;EUR;4586,78
+10.09.2025;10.09.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;4541,83
+10.09.2025;10.09.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-138,10;EUR;4403,73
+10.09.2025;10.09.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-250,00;EUR;4153,73
+12.09.2025;12.09.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;4123,75
+15.09.2025;15.09.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 09/2025;-62,00;EUR;4061,75
+15.09.2025;15.09.2025;Pizzeria Da Mario;Kartenzahlung;Pizzeria Da Mario;-67,96;EUR;3993,79
+15.09.2025;15.09.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-70,63;EUR;3923,16
+15.09.2025;15.09.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-119,62;EUR;3803,54
+16.09.2025;16.09.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-20,50;EUR;3783,04
+16.09.2025;16.09.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-36,92;EUR;3746,12
+16.09.2025;16.09.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-42,37;EUR;3703,75
+16.09.2025;16.09.2025;Eiscafe Venezia;Kartenzahlung;Eiscafe Venezia;-48,14;EUR;3655,61
+16.09.2025;16.09.2025;Dachdeckerei Weber;Ueberweisung;Rechnung 1932 Dachrinne reinigen/reparieren;-412,30;EUR;3243,31
+17.09.2025;17.09.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;3229,32
+18.09.2025;18.09.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-70,30;EUR;3159,02
+19.09.2025;19.09.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-145,60;EUR;3013,42
+22.09.2025;22.09.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-140,17;EUR;2873,25
+22.09.2025;22.09.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;2673,25
+25.09.2025;25.09.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-87,81;EUR;2585,44
+26.09.2025;26.09.2025;Zalando SE;Kartenzahlung;Kleidung;-104,41;EUR;2481,03
+29.09.2025;29.09.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 09/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;5665,65
+29.09.2025;29.09.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-100,00;EUR;5565,65
+30.09.2025;30.09.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 09/2025 Sabine Beispiel Teilzeit;1523,80;EUR;7089,45
+30.09.2025;30.09.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;5801,95
+01.10.2025;01.10.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;5783,95
+01.10.2025;01.10.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;5715,55
+01.10.2025;01.10.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-70,38;EUR;5645,17
+01.10.2025;01.10.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;5545,17
+01.10.2025;01.10.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;5395,17
+02.10.2025;02.10.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 10/2025;-165,00;EUR;5230,17
+03.10.2025;03.10.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 10/2025 Vertragskonto 7001234;-109,00;EUR;5121,17
+03.10.2025;03.10.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 10/2025 Vertragskonto 7001235;-148,00;EUR;4973,17
+06.10.2025;06.10.2025;Familienkasse;Gutschrift;Kindergeld 10/2025 KG-Nr 123FK456789;255,00;EUR;5228,17
+06.10.2025;06.10.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-29,93;EUR;5198,24
+06.10.2025;06.10.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-120,87;EUR;5077,37
+07.10.2025;07.10.2025;Autohaus Berger;Kartenzahlung;Inspektion + Winterreifen;-684,90;EUR;4392,47
+09.10.2025;09.10.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-31,92;EUR;4360,55
+10.10.2025;10.10.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;4315,60
+10.10.2025;10.10.2025;ARAL Station;Kartenzahlung;Tankstelle;-66,11;EUR;4249,49
+10.10.2025;10.10.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-114,67;EUR;4134,82
+13.10.2025;13.10.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;4104,84
+13.10.2025;13.10.2025;H&M;Kartenzahlung;Kleidung;-106,56;EUR;3998,28
+14.10.2025;14.10.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-43,83;EUR;3954,45
+14.10.2025;14.10.2025;ARAL Station;Kartenzahlung;Tankstelle;-58,59;EUR;3895,86
+14.10.2025;14.10.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-114,15;EUR;3781,71
+15.10.2025;15.10.2025;Rundfunk ARD ZDF DRadio;Lastschrift;Rundfunkbeitrag Quartal Beitragsnr 123456789;-55,08;EUR;3726,63
+15.10.2025;15.10.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 10/2025;-62,00;EUR;3664,63
+16.10.2025;16.10.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-73,23;EUR;3591,40
+17.10.2025;17.10.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;3577,41
+20.10.2025;20.10.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-31,28;EUR;3546,13
+20.10.2025;20.10.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-58,32;EUR;3487,81
+20.10.2025;20.10.2025;Pizzeria Da Mario;Kartenzahlung;Pizzeria Da Mario;-69,44;EUR;3418,37
+20.10.2025;20.10.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-141,67;EUR;3276,70
+20.10.2025;20.10.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;3076,70
+20.10.2025;20.10.2025;MediaMarkt;Kartenzahlung;Waschmaschine;-649,00;EUR;2427,70
+21.10.2025;21.10.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-109,13;EUR;2318,57
+21.10.2025;21.10.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;2168,57
+22.10.2025;22.10.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-250,00;EUR;1918,57
+28.10.2025;28.10.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 10/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;5103,19
+30.10.2025;30.10.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 10/2025 Sabine Beispiel Teilzeit;1523,80;EUR;6626,99
+30.10.2025;30.10.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;5339,49
+03.11.2025;03.11.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;5321,49
+03.11.2025;03.11.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;5253,09
+03.11.2025;03.11.2025;LIDL;Kartenzahlung;LIDL Musterhausen;-98,10;EUR;5154,99
+03.11.2025;03.11.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;5054,99
+03.11.2025;03.11.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 11/2025 Vertragskonto 7001234;-109,00;EUR;4945,99
+03.11.2025;03.11.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 11/2025 Vertragskonto 7001235;-148,00;EUR;4797,99
+03.11.2025;03.11.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;4647,99
+03.11.2025;03.11.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 11/2025;-165,00;EUR;4482,99
+07.11.2025;07.11.2025;Familienkasse;Gutschrift;Kindergeld 11/2025 KG-Nr 123FK456789;255,00;EUR;4737,99
+07.11.2025;07.11.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-127,26;EUR;4610,73
+10.11.2025;10.11.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;4565,78
+11.11.2025;11.11.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-22,03;EUR;4543,75
+11.11.2025;11.11.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-94,83;EUR;4448,92
+11.11.2025;11.11.2025;Deichmann;Kartenzahlung;Kleidung;-125,07;EUR;4323,85
+12.11.2025;12.11.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;4293,87
+12.11.2025;12.11.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-34,81;EUR;4259,06
+12.11.2025;12.11.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-63,10;EUR;4195,96
+13.11.2025;13.11.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-31,19;EUR;4164,77
+14.11.2025;14.11.2025;JET Tankstelle;Kartenzahlung;Tankstelle;-73,23;EUR;4091,54
+14.11.2025;14.11.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-98,30;EUR;3993,24
+17.11.2025;17.11.2025;Apotheke am Markt;Kartenzahlung;Apotheke;-8,29;EUR;3984,95
+17.11.2025;17.11.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;3970,96
+17.11.2025;17.11.2025;Pizzeria Da Mario;Kartenzahlung;Pizzeria Da Mario;-40,89;EUR;3930,07
+17.11.2025;17.11.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-44,45;EUR;3885,62
+17.11.2025;17.11.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 11/2025;-62,00;EUR;3823,62
+17.11.2025;17.11.2025;Gemeinde Musterhausen;Lastschrift;Grundsteuer B Kassenzeichen 4200.1234;-96,40;EUR;3727,22
+17.11.2025;17.11.2025;Zweckverband Wasser;Lastschrift;Abschlag Wasser/Abwasser;-134,00;EUR;3593,22
+18.11.2025;18.11.2025;ARAL Station;Kartenzahlung;Tankstelle;-70,15;EUR;3523,07
+18.11.2025;18.11.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-200,00;EUR;3323,07
+19.11.2025;19.11.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-96,76;EUR;3226,31
+20.11.2025;20.11.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;3026,31
+21.11.2025;21.11.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-122,16;EUR;2904,15
+24.11.2025;24.11.2025;Pizzeria Da Mario;Kartenzahlung;Pizzeria Da Mario;-53,43;EUR;2850,72
+25.11.2025;25.11.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-6689827;-47,71;EUR;2803,01
+26.11.2025;26.11.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-115,56;EUR;2687,45
+26.11.2025;26.11.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;2537,45
+27.11.2025;27.11.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Weihnachtsgeld 2025 Thomas Beispiel;1850,00;EUR;4387,45
+28.11.2025;28.11.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 11/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;7572,07
+01.12.2025;01.12.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 11/2025 Sabine Beispiel Teilzeit;1523,80;EUR;9095,87
+01.12.2025;01.12.2025;TSV Musterhausen 1901 e.V.;Lastschrift;Familienbeitrag;-18,00;EUR;9077,87
+01.12.2025;01.12.2025;Sichere Zukunft Versicherung AG;Lastschrift;Berufsunfaehigkeitsversicherung Thomas;-68,40;EUR;9009,47
+01.12.2025;01.12.2025;Bausparkasse Beispiel;Dauerauftrag;Bausparvertrag 55667788 Sparrate;-100,00;EUR;8909,47
+01.12.2025;01.12.2025;Lebensversicherung Beispiel AG;Lastschrift;Private Rentenversicherung Vertrag 4455-66;-150,00;EUR;8759,47
+01.12.2025;01.12.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;7471,97
+02.12.2025;02.12.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-127,72;EUR;7344,25
+02.12.2025;02.12.2025;Gemeinde Musterhausen;Lastschrift;Betreuung Grundschule Lena 12/2025;-165,00;EUR;7179,25
+03.12.2025;03.12.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Strom 12/2025 Vertragskonto 7001234;-109,00;EUR;7070,25
+03.12.2025;03.12.2025;Stadtwerke Musterhausen;Lastschrift;Abschlag Gas 12/2025 Vertragskonto 7001235;-148,00;EUR;6922,25
+05.12.2025;05.12.2025;Familienkasse;Gutschrift;Kindergeld 12/2025 KG-Nr 123FK456789;255,00;EUR;7177,25
+05.12.2025;05.12.2025;Shell Station;Kartenzahlung;Tankstelle;-58,49;EUR;7118,76
+05.12.2025;05.12.2025;EDEKA Center;Kartenzahlung;EDEKA Center Musterhausen;-127,38;EUR;6991,38
+05.12.2025;05.12.2025;MediaMarkt;Kartenzahlung;Weihnachtseinkauf;-129,90;EUR;6861,48
+08.12.2025;08.12.2025;Baeckerei Schmitt;Kartenzahlung;Baeckerei Schmitt Musterhausen;-24,30;EUR;6837,18
+08.12.2025;08.12.2025;Apotheke am Markt;Kartenzahlung;Apotheke;-25,05;EUR;6812,13
+08.12.2025;08.12.2025;ARAL Station;Kartenzahlung;Tankstelle;-66,76;EUR;6745,37
+09.12.2025;09.12.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-145,88;EUR;6599,49
+10.12.2025;10.12.2025;Freibad Musterhausen;Kartenzahlung;Freibad Musterhausen;-29,86;EUR;6569,63
+10.12.2025;10.12.2025;Telekom Deutschland GmbH;Lastschrift;Festnetz/Internet Kundennr 5566778899;-44,95;EUR;6524,68
+11.12.2025;11.12.2025;Zalando SE;Kartenzahlung;Kleidung;-69,70;EUR;6454,98
+12.12.2025;12.12.2025;Mobilfunk Beispiel GmbH;Lastschrift;2 Tarife Kundennr 99887766;-29,98;EUR;6425,00
+12.12.2025;12.12.2025;Galeria;Kartenzahlung;Weihnachtseinkauf;-88,40;EUR;6336,60
+15.12.2025;15.12.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-18,68;EUR;6317,92
+15.12.2025;15.12.2025;Musikschule Musterhausen e.V.;Lastschrift;Unterricht Klavier Lena 12/2025;-62,00;EUR;6255,92
+15.12.2025;15.12.2025;Shell Station;Kartenzahlung;Tankstelle;-76,68;EUR;6179,24
+15.12.2025;15.12.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-110,22;EUR;6069,02
+17.12.2025;17.12.2025;Netflix International B.V.;Kartenzahlung;Netflix Standard;-13,99;EUR;6055,03
+17.12.2025;17.12.2025;Gasthaus Zum Adler;Kartenzahlung;Gasthaus Zum Adler;-72,86;EUR;5982,17
+17.12.2025;17.12.2025;ALDI SUED;Kartenzahlung;ALDI SUED Musterhausen;-106,00;EUR;5876,17
+18.12.2025;18.12.2025;dm-drogerie markt;Kartenzahlung;dm Musterhausen;-40,57;EUR;5835,60
+18.12.2025;18.12.2025;Galeria;Kartenzahlung;Weihnachtseinkauf;-211,75;EUR;5623,85
+22.12.2025;22.12.2025;Friseur Haarscharf;Kartenzahlung;Friseur;-33,28;EUR;5590,57
+22.12.2025;22.12.2025;REWE Markt;Kartenzahlung;REWE Markt Musterhausen;-113,33;EUR;5477,24
+22.12.2025;22.12.2025;Depot Beispielbank;Dauerauftrag;ETF-Sparplan MSCI World;-200,00;EUR;5277,24
+23.12.2025;23.12.2025;AMAZON EU S.A R.L.;Lastschrift;Bestellung 302-5629629;-40,66;EUR;5236,58
+23.12.2025;23.12.2025;Metzgerei Stumpf;Kartenzahlung;Festtagsbraten;-64,20;EUR;5172,38
+24.12.2025;24.12.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-300,00;EUR;4872,38
+25.12.2025;25.12.2025;Sparkasse Geldautomat;Bargeldauszahlung;GA Musterhausen;-150,00;EUR;4722,38
+29.12.2025;29.12.2025;Holzbau Mahler GmbH;Lohn/Gehalt;Gehalt 12/2025 Thomas Beispiel PersNr 4711;3184,62;EUR;7907,00
+30.12.2025;30.12.2025;Gemeinde Musterhausen;Lohn/Gehalt;Bezuege 12/2025 Sabine Beispiel Teilzeit;1523,80;EUR;9430,80
+30.12.2025;30.12.2025;Musterbank Baufinanzierung;Lastschrift;Darlehen 88 123 456 Zins und Tilgung;-1287,50;EUR;8143,30
