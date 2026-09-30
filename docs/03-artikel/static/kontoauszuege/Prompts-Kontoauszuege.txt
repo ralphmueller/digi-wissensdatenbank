@@ -1,0 +1,421 @@
+# KI bei Standardarbeiten: ein Jahr Kontoauszüge auswerten
+
+Material für den Digi-Stammtisch am 29.09.2026 („Wir üben nochmal KI-Abfragen“).
+Die Prompts folgen unserem Artikel
+[Vom einfachen Auftrag zum guten Prompt](https://ralphmueller.github.io/digi-wissensdatenbank/03-artikel/prompt-engineering/).
+
+## Die Daten — alles erfunden
+
+**Familie Beispiel** aus dem erfundenen Ort Musterhausen: Thomas (Vollzeit), Sabine (Teilzeit)
+und Tochter Lena (Grundschule, Klavier). Namen, Kunden- und Vertragsnummern sind ausgedacht.
+
+| Datei | Inhalt |
+|:---|:---|
+| `Kontoauszug_Familie-Beispiel_2025.csv` | Girokonto 01.01.–31.12.2025, wie ein Bank-Export (Semikolon, Dezimalkomma) |
+| `Kontoauszug_Familie-Beispiel_2025_mit-Kategorien.csv` | dieselben Buchungen mit Spalte **Kategorie** — die **Lösung** zum Vergleichen |
+
+Drin stecken: zwei Gehälter, Kindergeld, **Hauskredit** und Bausparvertrag, Nebenkosten,
+**Reparaturen am Haus**, Versicherungen, Auto, Einkäufe, das Kind, **Sommerurlaub am Gardasee**
+(Anzahlung Februar, Rest Juni, Zahlungen in Italien), Ostern in Hamburg, Steuererstattung,
+Weihnachtsgeld und Weihnachtseinkäufe.
+
+⚠️ **Echte Kontoauszüge nie ungeschwärzt in einen KI-Dienst laden.** Vorher Namen, IBAN und
+Kundennummern entfernen. Genau deshalb üben wir mit erfundenen Daten.
+
+---
+
+## So benutzt du die Prompts
+
+- Die Datei **ohne** Kategorien in das KI-Werkzeug laden (ChatGPT, Claude, Copilot …).
+- Den Prompt-Text aus dem grauen Kasten **vollständig** kopieren und einfügen.
+- Jeder Prompt ist gleich aufgebaut — das sind die **acht Bausteine** aus unserem Artikel:
+
+| Baustein | Frage dahinter |
+|:---|:---|
+| **Rolle** | Wer soll die KI sein? |
+| **Ziel** | Was will ich mit dem Ergebnis entscheiden? |
+| **Material** | Womit arbeitet die KI — und womit nicht? |
+| **Aufgabe** | Was genau soll sie tun, Schritt für Schritt? |
+| **Muss-Regeln** | Was ist zwingend? (harte Kriterien) |
+| **Gut ist es, wenn …** | Woran erkenne ich ein gutes Ergebnis? (Qualitätskriterien) |
+| **Wenn etwas fehlt** | Was tut die KI, wenn sie etwas nicht weiß? |
+| **Ausgabe** | Wie soll das Ergebnis aussehen? |
+
+---
+
+## Schritt 0 — So fängt man an (und warum das nicht reicht)
+
+```text
+Hier sind unsere Kontoauszüge von 2025. Wofür geben wir unser Geld aus?
+```
+
+Das ist erlaubt — **der erste Prompt darf schlecht sein.** Schaut euch die Antwort an und fragt:
+*Was stört mich daran?* Meist: Die Kategorien sind jedes Mal andere, die Summen lassen sich nicht
+prüfen, und man weiß nicht, ob alle Buchungen berücksichtigt wurden. Genau das beheben die
+folgenden Prompts.
+
+---
+
+## Prompt 1 — Erst prüfen, dann rechnen
+
+```text
+ROLLE
+Du bist ein sorgfältiger Buchhalter.
+
+ZIEL
+Bevor wir die Kontoauszüge auswerten, will ich sicher sein, dass du die Datei vollständig
+und richtig gelesen hast.
+
+MATERIAL
+Nur die hochgeladene CSV-Datei. Spalten sind durch Semikolon getrennt, Beträge haben ein
+Dezimalkomma. Negative Beträge sind Ausgaben, positive sind Einnahmen.
+
+AUFGABE
+1. Zähle die Buchungen.
+2. Nenne den ersten und den letzten Buchungstag.
+3. Nenne den Saldo nach der ersten und nach der letzten Buchung.
+4. Rechne getrennt: Summe aller Einnahmen, Summe aller Ausgaben.
+5. Mach die Probe: Saldo vor der ersten Buchung + alle Beträge = Saldo nach der letzten
+   Buchung? Den Saldo vor der ersten Buchung rechnest du so aus: Saldo der ersten Zeile
+   minus deren Betrag. Prüfe außerdem für jede Zeile: Saldo der Zeile davor + Betrag =
+   Saldo dieser Zeile.
+
+WENN ETWAS FEHLT
+Wenn die Probe nicht aufgeht oder du Zeilen nicht lesen konntest, schreib das deutlich hin.
+Rate nicht.
+
+AUSGABE
+Eine kurze Tabelle mit den Werten aus 1 bis 5, danach ein Satz: „Probe stimmt“ oder
+„Probe stimmt nicht, weil …“.
+```
+
+💡 Stimmt die Probe nicht, lohnen sich die nächsten Fragen noch nicht. Das ist unser
+„Kann ich das überprüfen?“ aus dem SWOT-Workshop.
+
+---
+
+## Prompt 2 — Jede Buchung einsortieren
+
+```text
+ROLLE
+Du bist ein sorgfältiger Buchhalter für Privathaushalte.
+
+ZIEL
+Wir wollen sehen, wofür unser Geld 2025 ausgegeben wurde — und das Ergebnis soll jedes Mal
+gleich aussehen, damit wir es mit anderen Jahren vergleichen können.
+
+MATERIAL
+Nur die hochgeladene CSV-Datei.
+
+AUFGABE
+Ordne jede einzelne Buchung genau einer dieser Kategorien zu:
+Einkommen, Haus, Lebensmittel, Auto, Kind, Urlaub, Vertraege, Freizeit, Sparen,
+Gesundheit, Einkaufen, Bargeld.
+
+MUSS-REGELN
+- Nur diese zwölf Kategorien verwenden, keine eigenen erfinden.
+- Jede Buchung kommt genau einmal vor.
+- Die Summe über alle Kategorien muss der Summe aller Beträge entsprechen.
+
+SO ORDNEST DU ZU
+- Einkommen: Gehälter, Kindergeld, Steuererstattung.
+- Haus: Kredit, Bausparen, Strom, Gas, Wasser, Grundsteuer, Müll, Wohngebäudeversicherung,
+  Handwerker, Baumarkt, Haushaltsgeräte. Auch Guthaben aus der Strom- oder Gasabrechnung.
+- Lebensmittel: Supermarkt, Bäcker, Metzger, Drogerie.
+- Auto: Tanken im Inland, Kfz-Versicherung, Kfz-Steuer, TÜV, Werkstatt.
+- Kind: Betreuung, Musikschule, Schulbedarf, Kleidung und Geschenke für das Kind.
+- Urlaub: alles, was mit einer Reise zusammenhängt, auch Anzahlungen, Maut, Tanken im
+  Ausland und alle Zahlungen im Ausland.
+- Vertraege: Telefon, Internet, Handy, Streaming, Rundfunkbeitrag, Berufsunfähigkeits-,
+  Haftpflicht- und Hausratversicherung.
+- Freizeit: Restaurant, Café, Kino, Freibad, Sportverein, Feiern.
+- Sparen: Sparplan, private Rentenversicherung.
+- Gesundheit: Apotheke, Arzt, Zahnarzt.
+- Einkaufen: Kleidung, Schuhe, Friseur, Online-Bestellungen, Geschenke.
+- Bargeld: Abhebungen am Geldautomaten.
+
+WENN ETWAS FEHLT
+Wenn eine Buchung in keine Kategorie eindeutig passt, ordne sie der wahrscheinlichsten zu
+und setze sie zusätzlich auf eine Liste „unsicher“ — mit einem Satz Begründung.
+
+AUSGABE
+1. Tabelle: Kategorie | Anzahl Buchungen | Summe in Euro. Einkommen in die erste Zeile,
+   darunter die Ausgaben-Kategorien, die größte Ausgabe zuerst.
+2. Kontrollzeile: Summe aller Kategorien = Summe aller Beträge (ja/nein).
+3. Liste „unsicher“.
+```
+
+💡 **Jetzt mit der Lösungsdatei vergleichen.** Wo weicht die KI ab? Ist der Baumarkt „Haus“
+oder „Einkaufen“? Das ist Ansichtssache — wichtig ist, dass die KI ihre Zuordnung begründen kann.
+
+---
+
+## Prompt 3 — Was hat der Urlaub gekostet?
+
+```text
+ROLLE
+Du bist ein genauer Buchhalter.
+
+ZIEL
+Wir planen den Urlaub 2026 und wollen wissen, was der Urlaub 2025 wirklich gekostet hat —
+nicht nur die Buchung, sondern alles.
+
+MATERIAL
+Nur die hochgeladene CSV-Datei.
+
+AUFGABE
+1. Suche alle Buchungen, die zum Sommerurlaub am Gardasee gehören: Anzahlung, Restzahlung,
+   Maut, Tanken unterwegs und alle Zahlungen in Italien.
+2. Suche getrennt davon alle Buchungen, die zum Kurzurlaub an Ostern gehören.
+
+MUSS-REGELN
+Nur Buchungen verwenden, die in der Datei stehen. Keine Schätzungen für Dinge, die nicht
+gebucht sind (zum Beispiel bar bezahlte Ausgaben).
+
+WENN ETWAS FEHLT
+Wenn du bei einer Buchung nicht sicher bist, ob sie zum Urlaub gehört, liste sie
+gesondert auf und sag, warum du unsicher bist.
+
+AUSGABE
+Zwei Listen (Sommer, Ostern) mit Datum | Empfänger | Betrag, darunter jeweils die Summe.
+Zum Schluss ein Satz: Was sollten wir für einen ähnlichen Urlaub 2026 einplanen?
+```
+
+💡 Die KI kann nicht wissen, wie viel Bargeld im Urlaub ausgegeben wurde. Sagt sie das von
+sich aus? Genau dafür steht der Satz unter „Muss-Regeln“.
+
+---
+
+## Prompt 4 — Welche Verträge laufen?
+
+```text
+ROLLE
+Du bist ein erfahrener Verbraucherberater.
+
+ZIEL
+Wir wollen einen Überblick über alle laufenden Verträge und Abos, damit wir entscheiden
+können, welche wir überprüfen oder kündigen.
+
+MATERIAL
+Nur die hochgeladene CSV-Datei.
+
+AUFGABE
+1. Finde alle regelmäßigen Zahlungen. Regelmäßig heißt: gleicher Empfänger, ähnlicher
+   Betrag, monatlich, vierteljährlich oder einmal im Jahr.
+2. Rechne jede Zahlung auf ein Jahr hoch.
+3. Beurteile jede Zahlung: Ist sie notwendig (zum Beispiel Kredit, Pflichtversicherung),
+   sinnvoll, oder lohnt sich eine Überprüfung? Begründe kurz.
+
+MUSS-REGELN
+- Supermarkt, Tanken und Bargeld sind keine Verträge, auch wenn sie oft vorkommen.
+- Nenne keine Preise anderer Anbieter. Du kennst unsere Tarife nicht und darfst keine
+  Vergleichsangebote erfinden.
+
+GUT IST ES, WENN …
+du nicht nur sagst, WAS wir zahlen, sondern auch, WAS DAS FÜR UNS BEDEUTET — zum Beispiel,
+welcher Posten im Jahr am meisten ausmacht.
+
+AUSGABE
+Tabelle: Empfänger | Wofür | Betrag | Rhythmus | pro Jahr | Beurteilung.
+Darunter die Jahressumme aller Verträge.
+```
+
+---
+
+## Prompt 5 — Was kostet uns das Haus?
+
+```text
+ROLLE
+Du bist ein erfahrener Berater für Hausbesitzer.
+
+ZIEL
+Wir wollen wissen, was das Haus im Jahr kostet, und ob das zu unserem Einkommen passt.
+
+MATERIAL
+Nur die hochgeladene CSV-Datei.
+
+AUFGABE
+Teile die Kosten für das Haus in drei Gruppen:
+1. Finanzierung (Kredit, Bausparvertrag)
+2. Laufende Kosten (Strom, Gas, Wasser, Grundsteuer, Müll, Versicherung)
+3. Instandhaltung (Handwerker, Wartung, Schornsteinfeger, Baumarkt)
+Nenne für jede Gruppe die Jahressumme und den Durchschnitt pro Monat.
+Setze die Gesamtkosten ins Verhältnis zum Nettoeinkommen des Jahres.
+
+WENN ETWAS FEHLT
+Die Kreditrate enthält Zinsen und Tilgung. Wenn die Datei nicht zeigt, wie viel davon
+Zinsen sind, schreib das hin und rechne nicht mit einer Schätzung weiter.
+
+GUT IST ES, WENN …
+du am Ende beurteilst: Ist der Anteil für das Haus hoch, normal oder niedrig — und was
+bedeutet das für die Familie?
+
+AUSGABE
+Tabelle mit den drei Gruppen, darunter der Anteil am Einkommen in Prozent und drei Sätze
+Beurteilung.
+```
+
+💡 Hier ist **WHAT → SO WHAT** zu sehen: nicht nur „das Haus kostet X“, sondern „das bedeutet
+für euch …“.
+
+---
+
+## Prompt 6 — Was können wir von der Steuer absetzen?
+
+```text
+ROLLE
+Du hilfst beim Sammeln von Unterlagen für die Steuererklärung. Du bist KEIN Steuerberater
+und gibst keine verbindliche Auskunft.
+
+ZIEL
+Wir wollen eine Liste, welche Buchungen wir unserer Steuerberaterin oder dem Steuerprogramm
+vorlegen sollten.
+
+MATERIAL
+Nur die hochgeladene CSV-Datei. Die Familie wohnt selbst im Haus, es ist nicht vermietet.
+
+AUFGABE
+Suche Buchungen, die für die Einkommensteuer 2025 wichtig sein könnten, zum Beispiel
+Handwerkerleistungen, Kinderbetreuung, Versicherungen.
+Schreib zu jeder Buchung dazu, warum sie wichtig sein könnte.
+
+MUSS-REGELN
+- Kennzeichne bei jeder Buchung, wie sicher du bist: sicher / wahrscheinlich / unsicher.
+- Bei Handwerkerrechnungen zählt nur der Arbeitslohn, nicht das Material. Die Datei zeigt
+  nur den Gesamtbetrag — sag das, statt den Arbeitslohn zu schätzen.
+
+WENN ETWAS FEHLT
+Wenn du eine Regel nicht sicher kennst, schreib: „Bitte bei der Steuerberatung nachfragen.“
+Erfinde keine Beträge und keine Paragraphen.
+
+AUSGABE
+Tabelle: Datum | Empfänger | Betrag | Warum wichtig | Wie sicher.
+Darunter: Welche Belege sollten wir heraussuchen?
+```
+
+⚠️ **Hier besonders genau hinschauen.** Behauptet die KI Steuerregeln mit großer Sicherheit?
+Nachfragen: „Woher weißt du das?“
+
+---
+
+## Prompt 7 — Für Fortgeschrittene: erst Fakten, dann Rat
+
+Hier trennen wir die Arbeit in **zwei Schritte**, wie beim Theater: Analyst und Dramaturg.
+
+**Schritt A — der Analyst** (nüchtern, zuverlässig):
+
+```text
+ROLLE
+Du bist ein nüchterner Buchhalter. Du beschreibst, du bewertest nicht.
+
+AUFGABE
+Erstelle aus der hochgeladenen CSV-Datei eine Übersicht der Ausgaben je Kategorie und
+Monat. Verwende genau diese Kategorien: Haus, Lebensmittel, Auto, Kind, Urlaub, Vertraege,
+Freizeit, Sparen, Gesundheit, Einkaufen, Bargeld. Nenne für jede Kategorie die Jahressumme und den
+Monatsdurchschnitt. Kennzeichne einmalige Ausgaben (Urlaub, Reparaturen, Weihnachten)
+getrennt von regelmäßigen.
+
+MUSS-REGELN
+Nur Zahlen aus der Datei. Keine Ratschläge, keine Bewertungen.
+
+AUSGABE
+Eine Tabelle Kategorie × Monat, darunter die Liste der einmaligen Ausgaben.
+```
+
+**Schritt B — der Berater** (urteilt auf Grundlage von Schritt A):
+
+```text
+ROLLE
+Du bist eine erfahrene Haushaltsberaterin der Verbraucherzentrale. Familien verlassen sich
+auf dein Urteil. Deine Aufgabe ist nicht, die Zahlen zusammenzufassen, sondern eine
+Entscheidung zu ermöglichen.
+
+ZIEL
+Die Familie möchte 2026 jeden Monat 300 Euro mehr zurücklegen.
+
+MATERIAL
+Nur die Übersicht aus dem vorigen Schritt.
+
+MUSS-REGELN (daran wird nicht gespart)
+- Kredit und Bausparvertrag
+- Versicherungen
+- Betreuung und Musikschule des Kindes
+
+GUT IST ES, WENN …
+- du höchstens drei Vorschläge machst, jeweils mit Betrag pro Monat,
+- jeder Vorschlag begründet ist: Was ändert sich, und was bedeutet das im Alltag?
+- du ehrlich sagst, wenn 300 Euro ohne Verzicht nicht erreichbar sind.
+
+WENN ETWAS FEHLT
+Wenn du für einen Vorschlag Informationen brauchst, die nicht in der Übersicht stehen,
+stell eine Frage, statt etwas anzunehmen.
+
+AUSGABE
+Drei Vorschläge als Liste, danach eine klare Empfehlung in einem Satz.
+```
+
+---
+
+## Bonus — Wann wird es knapp?
+
+```text
+ROLLE
+Du bist ein vorausschauender Haushaltsberater.
+
+ZIEL
+Wir wollen nicht wieder ins Minus rutschen und fragen uns, ob wir dafür einen Puffer
+brauchen.
+
+MATERIAL
+Nur die hochgeladene CSV-Datei. Die Spalte „Saldo“ zeigt den Kontostand nach jeder Buchung.
+
+AUFGABE
+1. Finde den Tag mit dem niedrigsten Kontostand.
+2. Erkläre, welche Buchungen in den Tagen davor dazu geführt haben.
+3. Beurteile: Ist das ein Zufall oder kommt das jedes Jahr wieder? Was bedeutet das für uns?
+
+WENN ETWAS FEHLT
+Wenn du für die Beurteilung Daten aus anderen Jahren bräuchtest, sag das.
+
+AUSGABE
+Datum und Kontostand, die auslösenden Buchungen als Liste, dann zwei Sätze Empfehlung.
+```
+
+💡 Auflösung: Im Januar kommen die Jahresbeiträge für Versicherungen, Kfz-Steuer und Müll
+zusammen — das Konto rutscht Ende Januar kurz ins Minus. Findet die KI das, und erkennt sie,
+dass es **jedes Jahr** wiederkommt?
+
+### Dasselbe ohne KI — für die echten Daten
+
+Wer seine echten Kontoauszüge **nicht** an einen KI-Dienst geben will, kann die Bonusfrage mit
+dem Programm `wann_wird_es_knapp.py` beantworten. Es läuft **nur auf dem eigenen Rechner**,
+braucht kein Internet und nichts außer Python 3:
+
+```text
+python3 wann_wird_es_knapp.py Kontoauszug.csv
+```
+
+Es macht zuerst die Probe (Anfang + alle Buchungen = Ende), findet dann den tiefsten Kontostand,
+listet die großen Ausgaben seit dem letzten Hochstand und markiert, welche davon **regelmäßig**
+sind und welche **selten** (Jahresbeiträge). Dazu gibt es den niedrigsten Stand je Monat als
+kleines Balkendiagramm.
+
+💡 **Die Pointe für den Abend:** Die KI hat den Prompt geschrieben bekommen — und genau diese
+Arbeitsschritte kann man ihr auch als Programm abverlangen („Schreib mir ein Python-Programm,
+das …“). Das Programm liest danach die echten Daten, die KI sieht sie nie.
+
+---
+
+## Nach jeder Antwort: prüfen!
+
+Diese Fragen passen immer:
+
+- „Wie viele Buchungen hast du berücksichtigt?“ — Beim Probelauf hat eine KI ganz nebenbei
+  eine Buchung zu viel gezählt, obwohl der Rest der Antwort sehr gut war.
+- „Zeig mir die fünf größten Posten dieser Summe.“
+- „Wo warst du unsicher?“
+- „Woher weißt du das? Steht das in der Datei?“
+
+Und dann die Frage aus unserem Artikel: **„Welche Schwäche der letzten Antwort will ich als
+Nächstes beseitigen?“** Genau diesen einen Satz ergänzt ihr im Prompt — nicht alles neu
+schreiben.

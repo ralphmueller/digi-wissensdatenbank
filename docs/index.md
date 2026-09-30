@@ -19,7 +19,7 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 ### Stammtisch für Digitales
 
-**Dienstag, 29. September 2026 um 18:30 Uhr**
+**Dienstag, 27. Oktober 2026 um 18:30 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
 
 ### Einzelberatung
 
