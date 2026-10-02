@@ -25,7 +25,9 @@ Thema: **GPS-Daten und Smartphone** — WhatsApp, Fotos, Google Maps
 
 ### Einzelberatung
 
-**Mittwoch, 7. Oktober 2026, 14:00–16:00 Uhr**
+Mittwoch, 7. Oktober 2026: **ausgebucht**
+
+**Nächster freier Termin: Mittwoch, 21. Oktober 2026, 14:00–16:00 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
 
 [Mehr Informationen](03-artikel/stammtisch-und-einzelberatung.md){ .md-button .md-button--primary }
 
