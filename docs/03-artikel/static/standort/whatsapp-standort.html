@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp und der Standort</title>
+<style>
+  :root {
+    --bg: #0b1f1b;
+    --bg2: #12352d;
+    --text: #eef5f2;
+    --muted: #a7bdb5;
+    --accent: #25d366;
+    --accent2: #f5b942;
+    --wa-head: #075e54;
+    --wa-chat: #ece5dd;
+    --wa-out: #dcf8c6;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(ellipse at 70% 20%, var(--bg2), var(--bg) 70%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; justify-content: center;
+    padding: 4vh 7vw 9vh;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: clamp(2rem, 5.2vw, 4.2rem); margin: 0 0 .3em; line-height: 1.1; }
+  h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); margin: 0 0 .5em; color: var(--accent); line-height: 1.15; }
+  p, li { font-size: clamp(1.1rem, 2vw, 1.7rem); line-height: 1.45; }
+  ul, ol { margin: 0; padding-left: 1.2em; }
+  li { margin-bottom: .45em; }
+  .muted { color: var(--muted); }
+  .big { font-size: clamp(1.4rem, 3vw, 2.5rem); }
+  .two { display: grid; grid-template-columns: auto 1fr; gap: 4vw; align-items: center; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3vw; }
+  .card { background: rgba(255,255,255,.06); border-radius: 14px; padding: 1em 1.2em; }
+  .card h3 { margin: 0 0 .4em; font-size: clamp(1.2rem, 2.4vw, 2rem); color: var(--accent2); }
+  .step { opacity: 0; transition: opacity .5s; }
+  .step.shown { opacity: 1; }
+  .quote {
+    border-left: 6px solid var(--accent2); padding: .5em 1em; background: rgba(255,255,255,.05);
+    font-size: clamp(1.2rem, 2.3vw, 1.9rem); border-radius: 0 10px 10px 0;
+  }
+  .steps { counter-reset: s; list-style: none; padding: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 2.2em; margin-bottom: .6em; transition: opacity .4s; }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: .05em;
+    width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--accent); color: #062a1c;
+    font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .9em;
+  }
+  .steps li.dim { opacity: .35; }
+  button.ctl {
+    font: inherit; font-size: clamp(1rem, 1.8vw, 1.4rem);
+    background: rgba(255,255,255,.1); color: var(--text); border: 2px solid var(--accent);
+    border-radius: 8px; padding: .4em .9em; cursor: pointer; margin-right: .5em;
+  }
+
+  /* ---------- nachgebautes Handy mit WhatsApp ---------- */
+  .phone {
+    position: relative; height: min(74vh, 640px); aspect-ratio: 9 / 19;
+    border-radius: 30px; overflow: hidden; border: 6px solid #2b2b2b;
+    box-shadow: 0 10px 40px rgba(0,0,0,.5); background: var(--wa-chat);
+    color: #111; font-size: min(1.9vh, 15px);
+    display: flex; flex-direction: column;
+  }
+  .wa-head {
+    background: var(--wa-head); color: #fff; padding: 2.6em .9em .7em;
+    display: flex; align-items: center; gap: .6em;
+  }
+  .wa-avatar { width: 2.4em; height: 2.4em; border-radius: 50%; background: #c7d7d3; display: grid; place-items: center; color: #075e54; font-weight: 700; }
+  .wa-name { font-weight: 600; font-size: 1.1em; }
+  .wa-status { font-size: .8em; opacity: .8; }
+  .wa-body { flex: 1; padding: .8em; display: flex; flex-direction: column; gap: .6em; overflow: hidden; }
+  .msg { max-width: 78%; padding: .45em .6em; border-radius: 8px; background: #fff; box-shadow: 0 1px 1px rgba(0,0,0,.12); }
+  .msg.out { align-self: flex-end; background: var(--wa-out); }
+  .msg .time { font-size: .72em; color: #667; text-align: right; margin-top: .2em; }
+  .loc { width: 15em; max-width: 100%; }
+  .loc svg { width: 100%; display: block; border-radius: 6px; }
+  .loc .cap { font-size: .85em; margin-top: .3em; }
+  .loc .live { color: #128c7e; font-weight: 600; }
+  .loc .stop { display: block; width: 100%; margin-top: .4em; padding: .45em; border: 0; border-top: 1px solid #c9e7b4;
+    background: transparent; color: #d93025; font: inherit; font-weight: 600; cursor: pointer; }
+  .wa-input { display: flex; align-items: center; gap: .5em; padding: .5em .6em 1.4em; background: #f6f6f6; }
+  .wa-plus { width: 2em; height: 2em; border-radius: 50%; display: grid; place-items: center; font-size: 1.4em; color: #128c7e; transition: all .3s; }
+  .wa-plus.hl { background: var(--accent2); color: #111; box-shadow: 0 0 0 4px rgba(245,185,66,.5); }
+  .wa-field { flex: 1; background: #fff; border-radius: 1.2em; padding: .5em .8em; color: #999; }
+
+  /* Einblendungen über dem Chat */
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #fff; border-radius: 16px 16px 0 0;
+    box-shadow: 0 -6px 20px rgba(0,0,0,.25); padding: 1em .8em 1.6em; transform: translateY(105%); transition: transform .45s; }
+  .sheet.open { transform: translateY(0); }
+  .grid6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em .5em; text-align: center; font-size: .85em; }
+  .ico { width: 3em; height: 3em; border-radius: 50%; margin: 0 auto .3em; display: grid; place-items: center; font-size: 1.3em; color: #fff; }
+  .hlbox { outline: 4px solid var(--accent2); outline-offset: 3px; border-radius: 10px; }
+  .screen { position: absolute; inset: 0; background: #fff; display: flex; flex-direction: column; transform: translateX(105%); transition: transform .45s; }
+  .screen.open { transform: translateX(0); }
+  .screen .top { background: var(--wa-head); color: #fff; padding: 2.6em .9em .7em; font-weight: 600; }
+  .row { display: flex; align-items: center; gap: .7em; padding: .8em .9em; border-bottom: 1px solid #eee; }
+  .row .ico { margin: 0; width: 2.4em; height: 2.4em; font-size: 1.1em; }
+  .row small { display: block; color: #667; }
+  .dur { display: flex; gap: .4em; padding: .8em; justify-content: center; }
+  .dur span { padding: .45em .8em; border-radius: 1em; border: 2px solid #128c7e; color: #128c7e; font-weight: 600; }
+  .dur span.on { background: #128c7e; color: #fff; }
+  .send { margin: auto .9em 1.6em; background: #25d366; color: #fff; text-align: center; padding: .7em; border-radius: 2em; font-weight: 700; }
+
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0; height: 6vh;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 3vw; color: var(--muted); font-size: clamp(.8rem, 1.4vw, 1.1rem);
+  }
+  .bar { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--accent); transition: width .3s; }
+  @media (max-width: 700px) {
+    .two, .cols { grid-template-columns: 1fr; }
+    .slide { padding: 3vh 16px 9vh; overflow-y: auto; justify-content: flex-start; }
+    .phone { height: 62vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Kartenbild für die Standort-Blasen, wird per JS eingesetzt -->
+<template id="minimap">
+  <svg viewBox="0 0 240 130" aria-hidden="true">
+    <rect width="240" height="130" fill="#e8eae6"/>
+    <path d="M-10,95 C60,80 120,110 250,70" stroke="#9ecbf2" stroke-width="7" fill="none"/>
+    <g stroke="#fff" stroke-width="9" stroke-linecap="round" fill="none">
+      <path d="M20,20 H220"/><path d="M60,0 V130"/><path d="M150,0 V130"/><path d="M0,60 H240"/>
+    </g>
+    <path d="M180,10 q30,0 40,25 q-10,25 -40,20z" fill="#c8e6c9"/>
+    <g class="dot" transform="translate(105 60)">
+      <circle r="13" fill="rgba(26,115,232,.2)"/>
+      <circle r="6.5" fill="#1a73e8" stroke="#fff" stroke-width="2.5"/>
+    </g>
+  </svg>
+</template>
+
+<!-- 1 Titel -->
+<section class="slide">
+  <p class="muted">Digi-Stammtisch Gersfeld · 27. Oktober 2026</p>
+  <h1>WhatsApp:<br>„Wo bist du gerade?“</h1>
+  <p class="big">Standort schicken, live teilen – und wieder beenden</p>
+  <p class="muted">Weiter mit → oder Leertaste · Vollbild mit F</p>
+</section>
+
+<!-- 2 Zwei Arten -->
+<section class="slide">
+  <h2>Zwei Arten, den Standort zu schicken</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>📍 Aktueller Standort</h3>
+      <ul>
+        <li>Ein Punkt auf der Karte, <b>einmal</b> verschickt</li>
+        <li>Bewegt sich nicht mit</li>
+        <li>„Ich stehe am Parkplatz.“</li>
+      </ul>
+    </div>
+    <div class="card step">
+      <h3>🔴 Live-Standort</h3>
+      <ul>
+        <li>Der andere sieht, <b>wie du dich bewegst</b></li>
+        <li>Für <b>15 Minuten, 1 Stunde oder 8 Stunden</b></li>
+        <li>„Ich bin auf dem Heimweg.“</li>
+      </ul>
+    </div>
+  </div>
+  <p class="step quote" style="margin-top:1em">Der Live-Standort ist ein Werkzeug auf Zeit: einschalten, benutzen, beenden.</p>
+</section>
+
+<!-- 3 So geht's (Klickpfad im nachgebauten WhatsApp) -->
+<section class="slide" data-scene="pfad">
+  <h2>So schickst du deinen Standort</h2>
+  <div class="two">
+    <div class="phone" id="p-pfad">
+      <div class="wa-head"><div class="wa-avatar">U</div><div><div class="wa-name">Ute</div><div class="wa-status">online</div></div></div>
+      <div class="wa-body">
+        <div class="msg">Wo bist du? Ich bin schon am Parkplatz Wasserkuppe.<div class="time">18:41</div></div>
+      </div>
+      <div class="wa-input"><div class="wa-plus" id="pf-plus">＋</div><div class="wa-field">Nachricht</div></div>
+
+      <div class="sheet" id="pf-sheet">
+        <div class="grid6">
+          <div><div class="ico" style="background:#1a73e8">🖼</div>Fotos</div>
+          <div><div class="ico" style="background:#555">📷</div>Kamera</div>
+          <div id="pf-loc"><div class="ico" style="background:#25a35a">📍</div>Standort</div>
+          <div><div class="ico" style="background:#0aa5c0">👤</div>Kontakt</div>
+          <div><div class="ico" style="background:#5c6bc0">📄</div>Dokument</div>
+          <div><div class="ico" style="background:#f2a900">📊</div>Umfrage</div>
+        </div>
+      </div>
+
+      <div class="screen" id="pf-screen">
+        <div class="top">← Standort senden</div>
+        <div id="pf-map"></div>
+        <div class="row" id="pf-live"><div class="ico" style="background:#25d366">◎</div><div><b>Live-Standort teilen</b></div></div>
+        <div class="row" id="pf-now"><div class="ico" style="background:#128c7e">📍</div><div><b>Aktuellen Standort senden</b><small>Genau auf 8 Meter</small></div></div>
+        <div class="row"><div class="ico" style="background:#bbb">🏪</div><div>Orte in der Nähe<small>Gute Stube, Marktplatz 2</small></div></div>
+      </div>
+
+      <div class="screen" id="pf-dur">
+        <div class="top">← Live-Standort teilen</div>
+        <p style="padding:0 .9em; font-size:1em; color:#333">Wie lange soll Ute sehen, wo du bist?</p>
+        <div class="dur"><span>15 Minuten</span><span class="on">1 Stunde</span><span>8 Stunden</span></div>
+        <p style="padding:0 .9em; font-size:.9em; color:#667">Kommentar hinzufügen …</p>
+        <div class="send">➤ Senden</div>
+      </div>
+    </div>
+    <ol class="steps" id="pf-list">
+      <li>Den Chat öffnen, in dem du den Standort schicken willst.</li>
+      <li>Links neben dem Eingabefeld auf <b>＋</b> tippen (Android: <b>Büroklammer 📎</b>).</li>
+      <li><b>Standort</b> wählen.</li>
+      <li>Entweder <b>Aktuellen Standort senden</b> – fertig.</li>
+      <li>Oder <b>Live-Standort teilen</b>, Dauer wählen, <b>Senden</b>.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4 Live-Standort in Aktion -->
+<section class="slide" data-scene="live">
+  <h2>Der Live-Standort in Aktion</h2>
+  <div class="two">
+    <div class="phone">
+      <div class="wa-head"><div class="wa-avatar">U</div><div><div class="wa-name">Ute</div><div class="wa-status">online</div></div></div>
+      <div class="wa-body">
+        <div class="msg">Wo bist du? Ich bin schon am Parkplatz Wasserkuppe.<div class="time">18:41</div></div>
+        <div class="msg out loc" id="live-bubble">
+          <div id="live-map"></div>
+          <div class="cap"><span class="live" id="live-label">● Live bis 19:42</span></div>
+          <div class="cap" id="live-left">noch 60 Min.</div>
+          <button class="stop" id="live-stop">Teilen beenden</button>
+          <div class="time">18:42 ✓✓</div>
+        </div>
+        <div class="msg" id="live-reply" style="display:none">Ah, ich sehe dich schon kommen! 👋<div class="time">18:47</div></div>
+      </div>
+      <div class="wa-input"><div class="wa-plus">＋</div><div class="wa-field">Nachricht</div></div>
+    </div>
+    <div>
+      <ul>
+        <li>Im Chat erscheint eine <b>Karte</b>. Dein Punkt <b>wandert mit</b>, solange du teilst.</li>
+        <li>Darunter steht, <b>wie lange</b> noch geteilt wird.</li>
+        <li>Mit <b>Teilen beenden</b> hörst du sofort auf, auch vor Ablauf der Zeit.</li>
+      </ul>
+      <p class="muted">Hier geht die Zeit schneller: eine Sekunde ist eine Minute.</p>
+      <button class="ctl" id="live-restart">↺ Von vorn</button>
+    </div>
+  </div>
+</section>
+
+<!-- 5 Wer sieht was -->
+<section class="slide">
+  <h2>Wer sieht meinen Standort?</h2>
+  <ul>
+    <li><b>Nur der Chat</b>, in den du ihn schickst. In einer <b>Gruppe</b> sehen ihn <b>alle Mitglieder</b>.</li>
+    <li class="step">Standorte sind wie Nachrichten <b>Ende-zu-Ende verschlüsselt</b>. Nach Angaben von WhatsApp kann WhatsApp sie nicht lesen.</li>
+    <li class="step">Ein einmal geschickter Standort <b>bleibt im Chat</b>, bis ihn jemand löscht.</li>
+    <li class="step">Ein Live-Standort endet von selbst – <b>oder wenn du ihn beendest</b>.</li>
+  </ul>
+  <p class="step quote">Vor dem Senden in eine Gruppe kurz überlegen: Kenne ich alle, die da drin sind?</p>
+</section>
+
+<!-- 6 Kontrolle -->
+<section class="slide">
+  <h2>Wo du nachsiehst und abschaltest</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>Läuft noch etwas?</h3>
+      <p>WhatsApp → <b>Einstellungen → Datenschutz → Live-Standort</b>.<br>
+      Dort stehen alle Chats, in denen du gerade teilst, und dort kannst du das Teilen beenden.</p>
+    </div>
+    <div class="card step">
+      <h3>Darf WhatsApp überhaupt?</h3>
+      <p><b>iPhone:</b> Einstellungen → WhatsApp → <b>Standort</b><br>
+      <b>Android:</b> Einstellungen → Apps → WhatsApp → Berechtigungen → <b>Standort</b><br>
+      <span class="muted">„Beim Verwenden der App“ reicht für den einmaligen Standort. Für den Live-Standort fragt WhatsApp meist nach „Immer“.</span></p>
+    </div>
+  </div>
+  <p class="muted" style="margin-top:1em">Die Bezeichnungen können je nach Handy und WhatsApp-Version etwas abweichen.</p>
+</section>
+
+<!-- 7 Fotos -->
+<section class="slide">
+  <h2>Und Fotos über WhatsApp?</h2>
+  <ul>
+    <li>Ein Handyfoto kann den <b>Aufnahmeort</b> enthalten (siehe Teil „Fotos“).</li>
+    <li class="step">Beim <b>normalen Bildversand</b> verkleinert WhatsApp das Foto und entfernt dabei nach unserem Kenntnisstand den Aufnahmeort.</li>
+    <li class="step">Schickst du es <b>als Dokument</b> oder in <b>Originalqualität</b>, bleibt das Foto unverändert – mit Ort.</li>
+  </ul>
+  <p class="step quote">Probier es selbst aus: Foto als Dokument an dich selbst schicken und nach oben wischen.</p>
+</section>
+
+<!-- 8 Wann sinnvoll -->
+<section class="slide">
+  <h2>Wann ist das praktisch?</h2>
+  <div class="cols">
+    <ul>
+      <li>🅿️ <b>Treffpunkt</b> finden: „Hier stehe ich.“</li>
+      <li>🥾 <b>Allein wandern</b> auf der Rhön: Live-Standort an jemanden zu Hause.</li>
+      <li>🌙 <b>Heimweg im Dunkeln</b>: 15 Minuten reichen.</li>
+    </ul>
+    <ul class="step">
+      <li>📍 Empfangenen Standort antippen: Er öffnet sich in der Karte, mit <b>Route dorthin</b>.</li>
+      <li>🚑 <b>Im Notfall</b> immer <b>112</b> anrufen. Das Handy schickt den Standort dann automatisch an die Leitstelle.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 9 Übung -->
+<section class="slide">
+  <h2>Jetzt ihr – zu zweit</h2>
+  <ol class="steps">
+    <li>Chat mit deinem Sitznachbarn öffnen (oder mit Ralph).</li>
+    <li><b>＋</b> / 📎 → <b>Standort</b> → <b>Aktuellen Standort senden</b>. Kommt er an?</li>
+    <li>Dann <b>Live-Standort</b> für <b>15 Minuten</b> teilen.</li>
+    <li>Nachsehen: Einstellungen → Datenschutz → <b>Live-Standort</b>. Steht er da?</li>
+    <li><b>Teilen beenden.</b> Verschwindet er beim anderen?</li>
+  </ol>
+</section>
+
+<div class="bar" id="bar"></div>
+<footer><span>WhatsApp und der Standort</span><span id="count"></span></footer>
+
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.slide')];
+  let cur = 0, stepIdx = 0;
+  const $ = id => document.getElementById(id);
+  const tpl = $('minimap');
+  const mini = target => { target.innerHTML = ''; target.appendChild(tpl.content.cloneNode(true)); return target.querySelector('.dot'); };
+
+  // ---------- Folie 3: Klickpfad, ein Zustand pro Schritt ----------
+  mini($('pf-map'));
+  const pfItems = [...$('pf-list').children];
+  function pfad(n) {
+    // n: 0 = Chat, 1 = Plus markiert, 2 = Menü mit Standort, 3 = Standortseite (aktuell), 4 = Live, Dauer
+    $('pf-plus').classList.toggle('hl', n === 1);
+    $('pf-sheet').classList.toggle('open', n === 2);
+    $('pf-loc').classList.toggle('hlbox', n === 2);
+    $('pf-screen').classList.toggle('open', n >= 3);
+    $('pf-now').classList.toggle('hlbox', n === 3);
+    $('pf-live').classList.toggle('hlbox', n === 4);
+    $('pf-dur').classList.toggle('open', n >= 5);
+    pfItems.forEach((li, i) => li.classList.toggle('dim', i > Math.min(n, 4)));
+  }
+
+  // ---------- Folie 4: Live-Standort ----------
+  const liveDot = mini($('live-map'));
+  const route = [[40, 110], [60, 60], [105, 60], [150, 60], [150, 20], [200, 20]];
+  let liveTimer = null, liveT = 0, stopped = false;
+  function livePos(k) {
+    const n = route.length - 1, f = k * n, i = Math.min(n - 1, Math.floor(f)), r = f - i;
+    return [route[i][0] + (route[i + 1][0] - route[i][0]) * r, route[i][1] + (route[i + 1][1] - route[i][1]) * r];
+  }
+  function liveTick() {
+    if (stopped) return;
+    liveT++;
+    const left = Math.max(0, 60 - liveT);
+    const [x, y] = livePos(Math.min(1, liveT / 40));
+    liveDot.setAttribute('transform', `translate(${x} ${y})`);
+    $('live-left').textContent = left > 0 ? `noch ${left} Min.` : 'Zeit abgelaufen';
+    if (liveT === 5) $('live-reply').style.display = '';
+    if (left === 0) endLive('Live-Standort abgelaufen');
+  }
+  function endLive(text) {
+    stopped = true; clearInterval(liveTimer); liveTimer = null;
+    $('live-label').textContent = text; $('live-label').style.color = '#667';
+    $('live-left').textContent = '';
+    $('live-stop').style.display = 'none';
+    liveDot.querySelector('circle:last-child').setAttribute('fill', '#9aa0a6');
+  }
+  function startLive() {
+    clearInterval(liveTimer); liveT = 0; stopped = false;
+    $('live-label').textContent = '● Live bis 19:42'; $('live-label').style.color = '';
+    $('live-left').textContent = 'noch 60 Min.';
+    $('live-stop').style.display = '';
+    $('live-reply').style.display = 'none';
+    liveDot.querySelector('circle:last-child').setAttribute('fill', '#1a73e8');
+    const [x, y] = livePos(0); liveDot.setAttribute('transform', `translate(${x} ${y})`);
+    liveTimer = setInterval(liveTick, 1000);
+  }
+  function stopLiveTimer() { clearInterval(liveTimer); liveTimer = null; }
+  $('live-stop').addEventListener('click', () => endLive('Live-Standort beendet'));
+  $('live-restart').addEventListener('click', startLive);
+
+  // ---------- Navigation ----------
+  const steps = s => s.dataset.scene === 'pfad' ? 5 : s.querySelectorAll('.step').length;
+  function render() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+    const s = slides[cur];
+    s.querySelectorAll('.step').forEach((e, i) => e.classList.toggle('shown', i < stepIdx));
+    if (s.dataset.scene === 'pfad') pfad(stepIdx);
+    if (s.dataset.scene === 'live') { if (!liveTimer && !stopped) startLive(); } else stopLiveTimer();
+    $('count').textContent = `${cur + 1} / ${slides.length}`;
+    $('bar').style.width = `${(cur + 1) / slides.length * 100}%`;
+    try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) {}
+  }
+  function go(to, st) {
+    cur = to; stepIdx = st;
+    // beim Betreten der Live-Folie die Vorführung neu starten
+    if (slides[cur].dataset.scene === 'live') { stopLiveTimer(); stopped = false; }
+    render();
+  }
+  function next() {
+    if (stepIdx < steps(slides[cur])) { stepIdx++; render(); }
+    else if (cur < slides.length - 1) go(cur + 1, 0);
+  }
+  function prev() {
+    if (stepIdx > 0) { stepIdx--; render(); }
+    else if (cur > 0) go(cur - 1, steps(slides[cur - 1]));
+  }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') go(0, 0);
+    else if (e.key === 'End') go(slides.length - 1, 0);
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
+  });
+  document.addEventListener('click', e => {
+    if (e.target.closest('button')) return;
+    (e.clientX < window.innerWidth / 3) ? prev() : next();
+  });
+
+  const h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= slides.length) cur = h - 1;
+  render();
+})();
+</script>
+</body>
+</html>
