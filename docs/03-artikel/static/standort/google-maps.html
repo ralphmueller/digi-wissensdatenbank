@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Maps erklärt</title>
+<style>
+  :root {
+    --bg: #0e1a14;
+    --bg2: #17301f;
+    --text: #eef4ef;
+    --muted: #a6b8ab;
+    --accent: #5aa9ff;
+    --accent2: #f5b942;
+    --beam: rgba(90, 140, 255, .55);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(ellipse at 70% 20%, var(--bg2), var(--bg) 70%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; justify-content: center;
+    padding: 4vh 7vw 9vh;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: clamp(2rem, 5.2vw, 4.2rem); margin: 0 0 .3em; line-height: 1.1; }
+  h2 { font-size: clamp(1.6rem, 3.4vw, 2.8rem); margin: 0 0 .5em; color: var(--accent); line-height: 1.15; }
+  p, li { font-size: clamp(1.1rem, 2vw, 1.7rem); line-height: 1.45; }
+  ul, ol { margin: 0; padding-left: 1.2em; }
+  li { margin-bottom: .45em; }
+  .muted { color: var(--muted); }
+  .big { font-size: clamp(1.4rem, 3vw, 2.5rem); }
+  .two { display: grid; grid-template-columns: auto 1fr; gap: 4vw; align-items: center; }
+  .step { opacity: 0; transition: opacity .5s; }
+  .step.shown { opacity: 1; }
+  .quote {
+    border-left: 6px solid var(--accent2); padding: .5em 1em; background: rgba(255,255,255,.05);
+    font-size: clamp(1.2rem, 2.3vw, 1.9rem); border-radius: 0 10px 10px 0;
+  }
+
+  /* Handy-Rahmen um die Screenshots */
+  .phone {
+    position: relative;
+    height: min(74vh, 640px); aspect-ratio: 360 / 778;
+    border-radius: 28px; overflow: hidden;
+    border: 6px solid #2b2b2b; box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    background: #ddd;
+  }
+  .phone img, .phone svg { width: 100%; height: 100%; display: block; }
+  .ring {
+    position: absolute; border: 4px solid var(--accent2); border-radius: 50%;
+    pointer-events: none; transition: all .4s;
+  }
+  .lupe {
+    width: min(34vh, 300px); aspect-ratio: 1; border-radius: 50%;
+    border: 6px solid var(--accent2); box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    background-repeat: no-repeat; background-color: #ddd;
+  }
+  .dirs { display: flex; flex-wrap: wrap; gap: .6em; margin: .8em 0; }
+  button {
+    font: inherit; font-size: clamp(1rem, 1.8vw, 1.4rem);
+    background: rgba(255,255,255,.1); color: var(--text); border: 2px solid var(--accent);
+    border-radius: 8px; padding: .4em .9em; cursor: pointer;
+  }
+  button.on { background: var(--accent); color: #0b1a2e; }
+  .compass { width: min(22vh, 180px); }
+  .steps { counter-reset: s; list-style: none; padding: 0; }
+  .steps li { counter-increment: s; position: relative; padding-left: 2.2em; margin-bottom: .7em; }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: .05em;
+    width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--accent); color: #0b1a2e;
+    font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .9em;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: .3em;
+    background: #fff; color: #222; border-radius: 999px; padding: .1em .7em; font-size: .85em;
+  }
+  .modes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2vw; margin-top: .6em; }
+  .mode { background: rgba(255,255,255,.07); border-radius: 12px; padding: .7em; text-align: center; }
+  .mode b { display: block; font-size: clamp(1.6rem, 3vw, 2.4rem); }
+  .mode span { font-size: clamp(.9rem, 1.6vw, 1.3rem); color: var(--muted); }
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0; height: 6vh;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 3vw; color: var(--muted); font-size: clamp(.8rem, 1.4vw, 1.1rem);
+  }
+  .bar { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--accent); transition: width .3s; }
+  @media (max-width: 700px) {
+    .two, .modes { grid-template-columns: 1fr; }
+    .slide { padding: 3vh 16px 9vh; overflow-y: auto; justify-content: flex-start; }
+    .phone { height: 60vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 Titel -->
+<section class="slide">
+  <p class="muted">Digi-Stammtisch Gersfeld · 27. Oktober 2026</p>
+  <h1>Google Maps:<br>Wo bin ich – und wie komme ich hin?</h1>
+  <p class="big">Der blaue Punkt, die Taschenlampe und der Weg zum Ziel</p>
+  <p class="muted">Weiter mit → oder Leertaste · Vollbild mit F</p>
+</section>
+
+<!-- 2 Der blaue Punkt -->
+<section class="slide">
+  <h2>Der blaue Punkt: Das bist du</h2>
+  <div class="two">
+    <div class="phone">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgNzc4IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiIiB4MT0iMCIgeTE9IjEiIHgyPSIwIiB5Mj0iMCI+CiAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZjdjZmYiIHN0b3Atb3BhY2l0eT0iLjc1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGY3Y2ZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzYwIiBoZWlnaHQ9Ijc3OCIgZmlsbD0iI2VlZjBlYyIvPgogIDxwYXRoIGQ9Ik02MCwyNTAgcTYwLC0zMCA5MCwyMCBxMTAsNzAgLTUwLDgwIHEtNjAsMCAtNDAsLTEwMHoiIGZpbGw9IiNjZGU4YzkiLz4KICA8cGF0aCBkPSJNMjUwLDUyMCBxNjAsLTIwIDgwLDQwIHEtMjAsNDAgLTcwLDIweiIgZmlsbD0iI2NkZThjOSIvPgogIDxwYXRoIGQ9Ik0tMTAsNDcwIEM4MCw0NDAgMTgwLDUwMCAzNzAsMzgwIiBzdHJva2U9IiNhOWQxZjUiIHN0cm9rZS13aWR0aD0iMTAiIGZpbGw9Im5vbmUiLz4KICA8ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+CiAgICA8cGF0aCBkPSJNLTEwLDQxMCBMMzcwLDMzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxwYXRoIGQ9Ik0yMDAsMTIwIEMxOTAsMjUwIDE3MCwzODAgMTIwLDU2MCIgc3Ryb2tlLXdpZHRoPSIxMiIvPgogICAgPHBhdGggZD0iTTIwLDMwMCBIMzQwIiBzdHJva2Utd2lkdGg9IjciLz48cGF0aCBkPSJNNjAsMjAwIEwzMDAsMTkwIiBzdHJva2Utd2lkdGg9IjciLz4KICAgIDxwYXRoIGQ9Ik0yNjAsMTQwIFY1MjAiIHN0cm9rZS13aWR0aD0iNyIvPjxwYXRoIGQ9Ik05MCwxNjAgVjQ0MCIgc3Ryb2tlLXdpZHRoPSI3Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiM2YjZmNzMiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjIzMCIgeT0iMzUyIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgMjMwIDM1MikiPkhhdXB0c3RyYcOfZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjI3MCIgeT0iMjEwIj5CZXJnd2VnPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iNDcwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjM2M0MDQzIj5HZXJzZmVsZDwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMzkwIiByPSI5IiBmaWxsPSIjZTg3MTBhIi8+PGNpcmNsZSBjeD0iMjkyIiBjeT0iMjUwIiByPSI5IiBmaWxsPSIjMWE3M2U4Ii8+PGNpcmNsZSBjeD0iNzAiIGN5PSIyODAiIHI9IjkiIGZpbGw9IiM4ZTI0YWEiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODAgMzIxKSByb3RhdGUoMCkiPgogICAgICA8cGF0aCBkPSJNMCwwIEwtMjAsLTUyIEE1NSw1NSAwIDAgMSAyMCwtNTIgWiIgZmlsbD0idXJsKCNiKSIvPjwvZz4KICA8Y2lyY2xlIGN4PSIxODAiIGN5PSIzMjEiIHI9IjExIiBmaWxsPSIjMWE3M2U4IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMy41Ii8+CiAgPHJlY3QgeD0iMTIiIHk9IjUyIiB3aWR0aD0iMzM2IiBoZWlnaHQ9IjQ0IiByeD0iMjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2RkZCIvPgogIDxjaXJjbGUgY3g9IjM4IiBjeT0iNzQiIHI9IjkiIGZpbGw9IiMzNGE4NTMiLz48dGV4dCB4PSI1OCIgeT0iODAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM1ZjYzNjgiPkhpZXIgc3VjaGVuPC90ZXh0PgogIDxjaXJjbGUgY3g9IjMyNiIgY3k9Ijc0IiByPSIxNCIgZmlsbD0iI2M1Y2JkMyIvPgogIDxnIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiMzYzQwNDMiPjxyZWN0IHg9IjEyIiB5PSIxMDYiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjQiIHk9IjEyMyI+QXJiZWl0PC90ZXh0PgogICAgPHJlY3QgeD0iOTAiIHk9IjEwNiIgd2lkdGg9IjExMCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMTAyIiB5PSIxMjMiPkxhZGVzdGF0aW9uZW48L3RleHQ+CiAgICA8cmVjdCB4PSIyMDgiIHk9IjEwNiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjIwIiB5PSIxMjMiPlJlc3RhdXJhbnRzPC90ZXh0PjwvZz4KICA8Y2lyY2xlIGN4PSIzMjIiIGN5PSI0NTAiIHI9IjIwIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTMyMiw0MzggbDYsMTggbC02LC00IGwtNiw0eiIgZmlsbD0iIzNjNDA0MyIvPgogIDxyZWN0IHg9IjMwMCIgeT0iNDg4IiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMiIgZmlsbD0iIzExNzA2ZiIvPjxwYXRoIGQ9Ik0zMjIsNDk4IGwxMiwxMiBsLTEyLDEyIGwtMTIsLTEyeiIgZmlsbD0iI2ZmZiIvPgogIDxyZWN0IHk9IjU0OCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMzAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIvPgogIDx0ZXh0IHg9IjIwIiB5PSI1ODgiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDIxMjQiPkdlcnNmZWxkIChSaMO2bik8L3RleHQ+CiAgPHJlY3QgeD0iMjAiIHk9IjYxMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI4MCIgcng9IjEwIiBmaWxsPSIjZTllY2VmIi8+CiAgPGcgZm9udC1zaXplPSIxMSIgZmlsbD0iIzNjNDA0MyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+PHRleHQgeD0iNDUiIHk9Ijc1MiI+RXJrdW5kZW48L3RleHQ+PHRleHQgeD0iMTM1IiB5PSI3NTIiPk1laW4gTWFwczwvdGV4dD4KICAgIDx0ZXh0IHg9IjIyNSIgeT0iNzUyIj5CZWl0cmFnZW48L3RleHQ+PHRleHQgeD0iMzE1IiB5PSI3NTIiPlVudGVybmVobWVuPC90ZXh0PjwvZz4KICA8Y2lyY2xlIGN4PSI0NSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzExNzA2ZiIvPjxjaXJjbGUgY3g9IjEzNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPgogIDxjaXJjbGUgY3g9IjIyNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPjxjaXJjbGUgY3g9IjMxNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPgo8L3N2Zz4=" alt="Nachgezeichnete Google-Maps-Ansicht mit blauem Punkt">
+      <div class="ring" style="left:40%; top:36.6%; width:20%; height:9.3%;"></div>
+    </div>
+    <ul>
+      <li>Der <b>blaue Punkt</b> zeigt, wo dein Handy gerade ist. Die Position kommt vom GPS.</li>
+      <li class="step">Ist um den Punkt ein <b>hellblauer Kreis</b>, ist sich das Handy nicht ganz sicher. Je größer der Kreis, desto ungenauer.</li>
+      <li class="step">Ein <b>grauer Punkt</b> heißt: Das ist der letzte bekannte Ort, gerade gibt es keine frische Ortung.</li>
+      <li class="step">Verloren? Der runde Knopf rechts mit dem Pfeil holt die Karte <b>zurück zu dir</b>.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3 Taschenlampe -->
+<section class="slide" data-scene="lampe">
+  <h2>Die Taschenlampe zeigt, wohin du schaust</h2>
+  <div class="two">
+    <div class="phone" id="lampe-phone">
+      <img id="lampe-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgNzc4IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiIiB4MT0iMCIgeTE9IjEiIHgyPSIwIiB5Mj0iMCI+CiAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZjdjZmYiIHN0b3Atb3BhY2l0eT0iLjc1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGY3Y2ZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzYwIiBoZWlnaHQ9Ijc3OCIgZmlsbD0iI2VlZjBlYyIvPgogIDxwYXRoIGQ9Ik02MCwyNTAgcTYwLC0zMCA5MCwyMCBxMTAsNzAgLTUwLDgwIHEtNjAsMCAtNDAsLTEwMHoiIGZpbGw9IiNjZGU4YzkiLz4KICA8cGF0aCBkPSJNMjUwLDUyMCBxNjAsLTIwIDgwLDQwIHEtMjAsNDAgLTcwLDIweiIgZmlsbD0iI2NkZThjOSIvPgogIDxwYXRoIGQ9Ik0tMTAsNDcwIEM4MCw0NDAgMTgwLDUwMCAzNzAsMzgwIiBzdHJva2U9IiNhOWQxZjUiIHN0cm9rZS13aWR0aD0iMTAiIGZpbGw9Im5vbmUiLz4KICA8ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+CiAgICA8cGF0aCBkPSJNLTEwLDQxMCBMMzcwLDMzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxwYXRoIGQ9Ik0yMDAsMTIwIEMxOTAsMjUwIDE3MCwzODAgMTIwLDU2MCIgc3Ryb2tlLXdpZHRoPSIxMiIvPgogICAgPHBhdGggZD0iTTIwLDMwMCBIMzQwIiBzdHJva2Utd2lkdGg9IjciLz48cGF0aCBkPSJNNjAsMjAwIEwzMDAsMTkwIiBzdHJva2Utd2lkdGg9IjciLz4KICAgIDxwYXRoIGQ9Ik0yNjAsMTQwIFY1MjAiIHN0cm9rZS13aWR0aD0iNyIvPjxwYXRoIGQ9Ik05MCwxNjAgVjQ0MCIgc3Ryb2tlLXdpZHRoPSI3Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiM2YjZmNzMiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjIzMCIgeT0iMzUyIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgMjMwIDM1MikiPkhhdXB0c3RyYcOfZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjI3MCIgeT0iMjEwIj5CZXJnd2VnPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iNDcwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjM2M0MDQzIj5HZXJzZmVsZDwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMzkwIiByPSI5IiBmaWxsPSIjZTg3MTBhIi8+PGNpcmNsZSBjeD0iMjkyIiBjeT0iMjUwIiByPSI5IiBmaWxsPSIjMWE3M2U4Ii8+PGNpcmNsZSBjeD0iNzAiIGN5PSIyODAiIHI9IjkiIGZpbGw9IiM4ZTI0YWEiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODAgMzIxKSByb3RhdGUoMCkiPgogICAgICA8cGF0aCBkPSJNMCwwIEwtMjAsLTUyIEE1NSw1NSAwIDAgMSAyMCwtNTIgWiIgZmlsbD0idXJsKCNiKSIvPjwvZz4KICA8Y2lyY2xlIGN4PSIxODAiIGN5PSIzMjEiIHI9IjExIiBmaWxsPSIjMWE3M2U4IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMy41Ii8+CiAgPHJlY3QgeD0iMTIiIHk9IjUyIiB3aWR0aD0iMzM2IiBoZWlnaHQ9IjQ0IiByeD0iMjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2RkZCIvPgogIDxjaXJjbGUgY3g9IjM4IiBjeT0iNzQiIHI9IjkiIGZpbGw9IiMzNGE4NTMiLz48dGV4dCB4PSI1OCIgeT0iODAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM1ZjYzNjgiPkhpZXIgc3VjaGVuPC90ZXh0PgogIDxjaXJjbGUgY3g9IjMyNiIgY3k9Ijc0IiByPSIxNCIgZmlsbD0iI2M1Y2JkMyIvPgogIDxnIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiMzYzQwNDMiPjxyZWN0IHg9IjEyIiB5PSIxMDYiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjQiIHk9IjEyMyI+QXJiZWl0PC90ZXh0PgogICAgPHJlY3QgeD0iOTAiIHk9IjEwNiIgd2lkdGg9IjExMCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMTAyIiB5PSIxMjMiPkxhZGVzdGF0aW9uZW48L3RleHQ+CiAgICA8cmVjdCB4PSIyMDgiIHk9IjEwNiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjIwIiB5PSIxMjMiPlJlc3RhdXJhbnRzPC90ZXh0PjwvZz4KICA8Y2lyY2xlIGN4PSIzMjIiIGN5PSI0NTAiIHI9IjIwIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTMyMiw0MzggbDYsMTggbC02LC00IGwtNiw0eiIgZmlsbD0iIzNjNDA0MyIvPgogIDxyZWN0IHg9IjMwMCIgeT0iNDg4IiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMiIgZmlsbD0iIzExNzA2ZiIvPjxwYXRoIGQ9Ik0zMjIsNDk4IGwxMiwxMiBsLTEyLDEyIGwtMTIsLTEyeiIgZmlsbD0iI2ZmZiIvPgogIDxyZWN0IHk9IjU0OCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMzAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIvPgogIDx0ZXh0IHg9IjIwIiB5PSI1ODgiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDIxMjQiPkdlcnNmZWxkIChSaMO2bik8L3RleHQ+CiAgPHJlY3QgeD0iMjAiIHk9IjYxMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI4MCIgcng9IjEwIiBmaWxsPSIjZTllY2VmIi8+CiAgPGcgZm9udC1zaXplPSIxMSIgZmlsbD0iIzNjNDA0MyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+PHRleHQgeD0iNDUiIHk9Ijc1MiI+RXJrdW5kZW48L3RleHQ+PHRleHQgeD0iMTM1IiB5PSI3NTIiPk1laW4gTWFwczwvdGV4dD4KICAgIDx0ZXh0IHg9IjIyNSIgeT0iNzUyIj5CZWl0cmFnZW48L3RleHQ+PHRleHQgeD0iMzE1IiB5PSI3NTIiPlVudGVybmVobWVuPC90ZXh0PjwvZz4KICA8Y2lyY2xlIGN4PSI0NSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzExNzA2ZiIvPjxjaXJjbGUgY3g9IjEzNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPgogIDxjaXJjbGUgY3g9IjIyNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPjxjaXJjbGUgY3g9IjMxNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPgo8L3N2Zz4=" alt="Nachgezeichnete Google-Maps-Ansicht mit Lichtkegel">
+    </div>
+    <div>
+      <p>Der hellblaue <b>Lichtkegel</b> am Punkt ist wie eine Taschenlampe: Er leuchtet in die Richtung, in die die <b>Oberkante deines Handys</b> zeigt.</p>
+      <p class="muted">Vier Bilder: Das Handy wurde dabei einfach im Kreis gedreht.</p>
+      <div class="dirs">
+        <button data-dir="nord" class="on">Norden</button>
+        <button data-dir="ost">Osten</button>
+        <button data-dir="sued">Süden</button>
+        <button data-dir="nordwest">Nordwesten</button>
+      </div>
+      <div style="display:flex; align-items:center; gap:2vw">
+        <svg class="compass" viewBox="-100 -100 200 200" aria-label="Kompass">
+          <circle r="92" fill="rgba(255,255,255,.06)" stroke="#a6b8ab" stroke-width="3"/>
+          <g fill="#a6b8ab" font-size="22" font-weight="700" text-anchor="middle">
+            <text y="-64">N</text><text x="70" y="8">O</text><text y="80">S</text><text x="-70" y="8">W</text>
+          </g>
+          <g id="needle" style="transition: transform .6s">
+            <path d="M0,0 L-30,-80 A85,85 0 0 1 30,-80 Z" fill="var(--beam)"/>
+            <circle r="12" fill="#1a73e8" stroke="#fff" stroke-width="4"/>
+          </g>
+        </svg>
+        <p class="readout big" id="lampe-text" style="margin:0">Blick nach <b>Norden</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 Lupe: schmal oder breit -->
+<section class="slide">
+  <h2>Schmal oder breit?</h2>
+  <div class="two">
+    <div class="lupe" id="lupe" role="img" aria-label="Vergrößerung des blauen Punkts mit Lichtkegel"></div>
+    <ul>
+      <li><b>Schmaler Kegel:</b> Der Kompass im Handy ist sich sicher.</li>
+      <li><b>Breiter Kegel:</b> Die Richtung ist ungenau.</li>
+      <li class="step">Dann hilft: Handy ein paarmal in Form einer <b>liegenden 8</b> durch die Luft bewegen. Google Maps bietet dafür auch „Kalibrieren“ an, wenn du auf den blauen Punkt tippst.</li>
+      <li class="step">Der Kompass mag <b>kein Metall und keine Magnete</b>: Auto, Handyhülle mit Magnetverschluss, Kühlschrank.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5 Karte dreht mit -->
+<section class="slide">
+  <h2>Norden oben – oder die Karte dreht mit?</h2>
+  <ul>
+    <li>Normal ist <b>Norden oben</b>, wie auf einer Wanderkarte. Dann dreht sich nur die Taschenlampe.</li>
+    <li class="step">Tippst du auf den <b>Standort-Knopf</b> rechts unten, springt die Karte zu dir. Tippst du <b>noch einmal</b>, dreht sich die Karte mit dir mit: Was vor dir liegt, ist oben.</li>
+    <li class="step">Oben rechts erscheint dann eine kleine <b>Kompassnadel</b>. Ein Tipp darauf stellt wieder Norden nach oben.</li>
+  </ul>
+  <p class="step quote">Tipp für Wanderer: Mitdrehen ist bequemer, „Norden oben“ ist besser, um sich die Gegend einzuprägen.</p>
+</section>
+
+<!-- 6 Ziel suchen -->
+<section class="slide">
+  <h2>Wie komme ich zu meinem Ziel?</h2>
+  <ol class="steps">
+    <li>Oben in <span class="chip">🔍 Hier suchen</span> das Ziel eintippen, zum Beispiel „Wasserkuppe“. Oder auf das <b>Mikrofon</b> tippen und es sagen.</li>
+    <li class="step">Das Ziel antippen. Unten erscheint eine Karte mit Infos und dem Knopf <b>Route</b>.</li>
+    <li class="step">Alternativ gleich der <b>blaue Knopf mit dem Pfeil</b> rechts unten: Er fragt direkt nach dem Ziel.</li>
+    <li class="step">Startpunkt ist automatisch „Mein Standort“, also der blaue Punkt.</li>
+  </ol>
+</section>
+
+<!-- 7 Verkehrsmittel -->
+<section class="slide">
+  <h2>Womit willst du fahren?</h2>
+  <p>Oben über der Route wählst du das Verkehrsmittel. Maps rechnet für jedes die Zeit aus:</p>
+  <div class="modes">
+    <div class="mode"><b>🚗</b><span>Auto</span></div>
+    <div class="mode"><b>🚌</b><span>Bus und Bahn</span></div>
+    <div class="mode"><b>🚶</b><span>zu Fuß</span></div>
+    <div class="mode"><b>🚲</b><span>Fahrrad</span></div>
+  </div>
+  <ul style="margin-top:1em">
+    <li class="step">Graue Linien sind <b>andere Routen</b>. Antippen, wenn dir eine besser gefällt.</li>
+    <li class="step">Auf <b>Starten</b> tippen: Jetzt sagt Maps die Abbiegungen an.</li>
+  </ul>
+</section>
+
+<!-- 8 Unterwegs: Fahrtanimation -->
+<section class="slide" data-scene="fahrt">
+  <h2>Unterwegs</h2>
+  <div class="two">
+    <div class="phone nav" id="nav">
+      <svg viewBox="0 0 360 778" id="nav-svg" aria-label="Animierte Beispielfahrt in Google Maps">
+        <rect width="360" height="778" fill="#e8eae6"/>
+        <g id="nav-map"></g>
+        <!-- fester Pfeil in der unteren Bildhälfte -->
+        <g transform="translate(180 520)">
+          <circle r="30" fill="rgba(26,115,232,.18)"/>
+          <path d="M0,-22 L16,16 L0,7 L-16,16 Z" fill="#1a73e8" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+        </g>
+        <!-- Abbiegehinweis oben -->
+        <g>
+          <rect x="10" y="14" width="340" height="96" rx="14" fill="#0f6e45"/>
+          <text id="nav-arrow" x="52" y="82" text-anchor="middle" fill="#fff" font-size="54" font-weight="700">↑</text>
+          <text id="nav-dist" x="96" y="56" fill="#fff" font-size="30" font-weight="700">300 m</text>
+          <text id="nav-instr" x="96" y="90" fill="#d6f2e3" font-size="21">geradeaus</text>
+        </g>
+        <!-- Ankunft unten -->
+        <g>
+          <rect x="0" y="668" width="360" height="110" fill="#fff"/>
+          <circle cx="40" cy="722" r="22" fill="#f1f3f4"/>
+          <text x="40" y="731" text-anchor="middle" fill="#5f6368" font-size="26">✕</text>
+          <text id="nav-min" x="180" y="716" text-anchor="middle" fill="#188038" font-size="30" font-weight="700">14 Min.</text>
+          <text id="nav-rest" x="180" y="748" text-anchor="middle" fill="#5f6368" font-size="20">9,8 km · 19:14</text>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <ul>
+        <li>Aus dem blauen Punkt wird ein <b>blauer Pfeil</b>. Er bleibt unten in der Mitte, die <b>Karte dreht sich</b> unter ihm.</li>
+        <li><b>Oben</b> steht die nächste Abbiegung mit Entfernung.</li>
+        <li><b>Unten</b> stehen Restzeit, Restweg und Ankunftszeit.</li>
+        <li>Falsch abgebogen? Maps rechnet die Route <b>neu</b>. Beenden mit dem <b>✕</b>.</li>
+      </ul>
+      <div class="dirs">
+        <button id="nav-play">⏸ Pause</button>
+        <button id="nav-restart">↺ Von vorn</button>
+      </div>
+      <p class="muted">Beispielfahrt vom Marktplatz zur Wasserkuppe, Karte und Zahlen vereinfacht.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 Offline -->
+<section class="slide">
+  <h2>Funkloch in der Rhön? Offline-Karte!</h2>
+  <ul>
+    <li>Das GPS braucht <b>kein Netz</b>, die Karte aber schon – außer du hast sie vorher gespeichert.</li>
+    <li class="step">Profilbild oben rechts → <b>Offlinekarten</b> → Gebiet auswählen → <b>Herunterladen</b>.</li>
+    <li class="step">Am besten zu Hause im WLAN, das sind einige hundert Megabyte.</li>
+  </ul>
+  <p class="step quote">Dann findet der blaue Punkt seinen Weg auch auf der Wasserkuppe und im Ulstertal.</p>
+</section>
+
+<!-- 10 Übung -->
+<section class="slide">
+  <h2>Jetzt du!</h2>
+  <ol class="steps">
+    <li>Google Maps öffnen. Wo ist dein blauer Punkt?</li>
+    <li>Dreh dich einmal langsam im Kreis. Dreht die Taschenlampe mit?</li>
+    <li>Ziel suchen: „Wasserkuppe“. Wie lange dauert es mit dem Auto, wie lange zu Fuß?</li>
+    <li>Route ansehen, aber noch <b>nicht</b> starten.</li>
+  </ol>
+</section>
+
+<div class="bar" id="bar"></div>
+<footer><span>Google Maps erklärt</span><span id="count"></span></footer>
+
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.slide')];
+  let cur = 0, stepIdx = 0;
+
+  // Die vier Screenshots, Blickrichtung in Grad (0 = Norden)
+  const IMG = {
+    nord: { src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgNzc4IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiIiB4MT0iMCIgeTE9IjEiIHgyPSIwIiB5Mj0iMCI+CiAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZjdjZmYiIHN0b3Atb3BhY2l0eT0iLjc1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGY3Y2ZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzYwIiBoZWlnaHQ9Ijc3OCIgZmlsbD0iI2VlZjBlYyIvPgogIDxwYXRoIGQ9Ik02MCwyNTAgcTYwLC0zMCA5MCwyMCBxMTAsNzAgLTUwLDgwIHEtNjAsMCAtNDAsLTEwMHoiIGZpbGw9IiNjZGU4YzkiLz4KICA8cGF0aCBkPSJNMjUwLDUyMCBxNjAsLTIwIDgwLDQwIHEtMjAsNDAgLTcwLDIweiIgZmlsbD0iI2NkZThjOSIvPgogIDxwYXRoIGQ9Ik0tMTAsNDcwIEM4MCw0NDAgMTgwLDUwMCAzNzAsMzgwIiBzdHJva2U9IiNhOWQxZjUiIHN0cm9rZS13aWR0aD0iMTAiIGZpbGw9Im5vbmUiLz4KICA8ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+CiAgICA8cGF0aCBkPSJNLTEwLDQxMCBMMzcwLDMzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxwYXRoIGQ9Ik0yMDAsMTIwIEMxOTAsMjUwIDE3MCwzODAgMTIwLDU2MCIgc3Ryb2tlLXdpZHRoPSIxMiIvPgogICAgPHBhdGggZD0iTTIwLDMwMCBIMzQwIiBzdHJva2Utd2lkdGg9IjciLz48cGF0aCBkPSJNNjAsMjAwIEwzMDAsMTkwIiBzdHJva2Utd2lkdGg9IjciLz4KICAgIDxwYXRoIGQ9Ik0yNjAsMTQwIFY1MjAiIHN0cm9rZS13aWR0aD0iNyIvPjxwYXRoIGQ9Ik05MCwxNjAgVjQ0MCIgc3Ryb2tlLXdpZHRoPSI3Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiM2YjZmNzMiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjIzMCIgeT0iMzUyIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgMjMwIDM1MikiPkhhdXB0c3RyYcOfZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjI3MCIgeT0iMjEwIj5CZXJnd2VnPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iNDcwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjM2M0MDQzIj5HZXJzZmVsZDwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMzkwIiByPSI5IiBmaWxsPSIjZTg3MTBhIi8+PGNpcmNsZSBjeD0iMjkyIiBjeT0iMjUwIiByPSI5IiBmaWxsPSIjMWE3M2U4Ii8+PGNpcmNsZSBjeD0iNzAiIGN5PSIyODAiIHI9IjkiIGZpbGw9IiM4ZTI0YWEiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODAgMzIxKSByb3RhdGUoMCkiPgogICAgICA8cGF0aCBkPSJNMCwwIEwtMjAsLTUyIEE1NSw1NSAwIDAgMSAyMCwtNTIgWiIgZmlsbD0idXJsKCNiKSIvPjwvZz4KICA8Y2lyY2xlIGN4PSIxODAiIGN5PSIzMjEiIHI9IjExIiBmaWxsPSIjMWE3M2U4IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMy41Ii8+CiAgPHJlY3QgeD0iMTIiIHk9IjUyIiB3aWR0aD0iMzM2IiBoZWlnaHQ9IjQ0IiByeD0iMjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2RkZCIvPgogIDxjaXJjbGUgY3g9IjM4IiBjeT0iNzQiIHI9IjkiIGZpbGw9IiMzNGE4NTMiLz48dGV4dCB4PSI1OCIgeT0iODAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM1ZjYzNjgiPkhpZXIgc3VjaGVuPC90ZXh0PgogIDxjaXJjbGUgY3g9IjMyNiIgY3k9Ijc0IiByPSIxNCIgZmlsbD0iI2M1Y2JkMyIvPgogIDxnIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiMzYzQwNDMiPjxyZWN0IHg9IjEyIiB5PSIxMDYiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjQiIHk9IjEyMyI+QXJiZWl0PC90ZXh0PgogICAgPHJlY3QgeD0iOTAiIHk9IjEwNiIgd2lkdGg9IjExMCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMTAyIiB5PSIxMjMiPkxhZGVzdGF0aW9uZW48L3RleHQ+CiAgICA8cmVjdCB4PSIyMDgiIHk9IjEwNiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIyNiIgcng9IjEzIiBmaWxsPSIjZmZmIi8+PHRleHQgeD0iMjIwIiB5PSIxMjMiPlJlc3RhdXJhbnRzPC90ZXh0PjwvZz4KICA8Y2lyY2xlIGN4PSIzMjIiIGN5PSI0NTAiIHI9IjIwIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTMyMiw0MzggbDYsMTggbC02LC00IGwtNiw0eiIgZmlsbD0iIzNjNDA0MyIvPgogIDxyZWN0IHg9IjMwMCIgeT0iNDg4IiB3aWR0aD0iNDQiIGhlaWdodD0iNDQiIHJ4PSIxMiIgZmlsbD0iIzExNzA2ZiIvPjxwYXRoIGQ9Ik0zMjIsNDk4IGwxMiwxMiBsLTEyLDEyIGwtMTIsLTEyeiIgZmlsbD0iI2ZmZiIvPgogIDxyZWN0IHk9IjU0OCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMzAiIHJ4PSIxOCIgZmlsbD0iI2ZmZiIvPgogIDx0ZXh0IHg9IjIwIiB5PSI1ODgiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDIxMjQiPkdlcnNmZWxkIChSaMO2bik8L3RleHQ+CiAgPHJlY3QgeD0iMjAiIHk9IjYxMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI4MCIgcng9IjEwIiBmaWxsPSIjZTllY2VmIi8+CiAgPGcgZm9udC1zaXplPSIxMSIgZmlsbD0iIzNjNDA0MyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+PHRleHQgeD0iNDUiIHk9Ijc1MiI+RXJrdW5kZW48L3RleHQ+PHRleHQgeD0iMTM1IiB5PSI3NTIiPk1laW4gTWFwczwvdGV4dD4KICAgIDx0ZXh0IHg9IjIyNSIgeT0iNzUyIj5CZWl0cmFnZW48L3RleHQ+PHRleHQgeD0iMzE1IiB5PSI3NTIiPlVudGVybmVobWVuPC90ZXh0PjwvZz4KICA8Y2lyY2xlIGN4PSI0NSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzExNzA2ZiIvPjxjaXJjbGUgY3g9IjEzNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPgogIDxjaXJjbGUgY3g9IjIyNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPjxjaXJjbGUgY3g9IjMxNSIgY3k9IjcyOCIgcj0iOCIgZmlsbD0iIzlhYTBhNiIvPgo8L3N2Zz4=', deg: 0, name: 'Norden' },
+    ost: { src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgNzc4IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiIiB4MT0iMCIgeTE9IjEiIHgyPSIwIiB5Mj0iMCI+CiAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZjdjZmYiIHN0b3Atb3BhY2l0eT0iLjc1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGY3Y2ZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzYwIiBoZWlnaHQ9Ijc3OCIgZmlsbD0iI2VlZjBlYyIvPgogIDxwYXRoIGQ9Ik02MCwyNTAgcTYwLC0zMCA5MCwyMCBxMTAsNzAgLTUwLDgwIHEtNjAsMCAtNDAsLTEwMHoiIGZpbGw9IiNjZGU4YzkiLz4KICA8cGF0aCBkPSJNMjUwLDUyMCBxNjAsLTIwIDgwLDQwIHEtMjAsNDAgLTcwLDIweiIgZmlsbD0iI2NkZThjOSIvPgogIDxwYXRoIGQ9Ik0tMTAsNDcwIEM4MCw0NDAgMTgwLDUwMCAzNzAsMzgwIiBzdHJva2U9IiNhOWQxZjUiIHN0cm9rZS13aWR0aD0iMTAiIGZpbGw9Im5vbmUiLz4KICA8ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+CiAgICA8cGF0aCBkPSJNLTEwLDQxMCBMMzcwLDMzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxwYXRoIGQ9Ik0yMDAsMTIwIEMxOTAsMjUwIDE3MCwzODAgMTIwLDU2MCIgc3Ryb2tlLXdpZHRoPSIxMiIvPgogICAgPHBhdGggZD0iTTIwLDMwMCBIMzQwIiBzdHJva2Utd2lkdGg9IjciLz48cGF0aCBkPSJNNjAsMjAwIEwzMDAsMTkwIiBzdHJva2Utd2lkdGg9IjciLz4KICAgIDxwYXRoIGQ9Ik0yNjAsMTQwIFY1MjAiIHN0cm9rZS13aWR0aD0iNyIvPjxwYXRoIGQ9Ik05MCwxNjAgVjQ0MCIgc3Ryb2tlLXdpZHRoPSI3Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiM2YjZmNzMiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjIzMCIgeT0iMzUyIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgMjMwIDM1MikiPkhhdXB0c3RyYcOfZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjI3MCIgeT0iMjEwIj5CZXJnd2VnPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iNDcwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjM2M0MDQzIj5HZXJzZmVsZDwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMzkwIiByPSI5IiBmaWxsPSIjZTg3MTBhIi8+PGNpcmNsZSBjeD0iMjkyIiBjeT0iMjUwIiByPSI5IiBmaWxsPSIjMWE3M2U4Ii8+PGNpcmNsZSBjeD0iNzAiIGN5PSIyODAiIHI9IjkiIGZpbGw9IiM4ZTI0YWEiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODAgMzIxKSByb3RhdGUoOTApIj4KICAgICAgPHBhdGggZD0iTTAsMCBMLTIwLC01MiBBNTUsNTUgMCAwIDEgMjAsLTUyIFoiIGZpbGw9InVybCgjYikiLz48L2c+CiAgPGNpcmNsZSBjeD0iMTgwIiBjeT0iMzIxIiByPSIxMSIgZmlsbD0iIzFhNzNlOCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMuNSIvPgogIDxyZWN0IHg9IjEyIiB5PSI1MiIgd2lkdGg9IjMzNiIgaGVpZ2h0PSI0NCIgcng9IjIyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiNkZGQiLz4KICA8Y2lyY2xlIGN4PSIzOCIgY3k9Ijc0IiByPSI5IiBmaWxsPSIjMzRhODUzIi8+PHRleHQgeD0iNTgiIHk9IjgwIiBmb250LXNpemU9IjE2IiBmaWxsPSIjNWY2MzY4Ij5IaWVyIHN1Y2hlbjwvdGV4dD4KICA8Y2lyY2xlIGN4PSIzMjYiIGN5PSI3NCIgcj0iMTQiIGZpbGw9IiNjNWNiZDMiLz4KICA8ZyBmb250LXNpemU9IjExIiBmaWxsPSIjM2M0MDQzIj48cmVjdCB4PSIxMiIgeT0iMTA2IiB3aWR0aD0iNzAiIGhlaWdodD0iMjYiIHJ4PSIxMyIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjI0IiB5PSIxMjMiPkFyYmVpdDwvdGV4dD4KICAgIDxyZWN0IHg9IjkwIiB5PSIxMDYiIHdpZHRoPSIxMTAiIGhlaWdodD0iMjYiIHJ4PSIxMyIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjEwMiIgeT0iMTIzIj5MYWRlc3RhdGlvbmVuPC90ZXh0PgogICAgPHJlY3QgeD0iMjA4IiB5PSIxMDYiIHdpZHRoPSIxMDAiIGhlaWdodD0iMjYiIHJ4PSIxMyIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjIyMCIgeT0iMTIzIj5SZXN0YXVyYW50czwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iMzIyIiBjeT0iNDUwIiByPSIyMCIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0zMjIsNDM4IGw2LDE4IGwtNiwtNCBsLTYsNHoiIGZpbGw9IiMzYzQwNDMiLz4KICA8cmVjdCB4PSIzMDAiIHk9IjQ4OCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTIiIGZpbGw9IiMxMTcwNmYiLz48cGF0aCBkPSJNMzIyLDQ5OCBsMTIsMTIgbC0xMiwxMiBsLTEyLC0xMnoiIGZpbGw9IiNmZmYiLz4KICA8cmVjdCB5PSI1NDgiIHdpZHRoPSIzNjAiIGhlaWdodD0iMjMwIiByeD0iMTgiIGZpbGw9IiNmZmYiLz4KICA8dGV4dCB4PSIyMCIgeT0iNTg4IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAyMTI0Ij5HZXJzZmVsZCAoUmjDtm4pPC90ZXh0PgogIDxyZWN0IHg9IjIwIiB5PSI2MTAiIHdpZHRoPSIzMjAiIGhlaWdodD0iODAiIHJ4PSIxMCIgZmlsbD0iI2U5ZWNlZiIvPgogIDxnIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiMzYzQwNDMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjx0ZXh0IHg9IjQ1IiB5PSI3NTIiPkVya3VuZGVuPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iNzUyIj5NZWluIE1hcHM8L3RleHQ+CiAgICA8dGV4dCB4PSIyMjUiIHk9Ijc1MiI+QmVpdHJhZ2VuPC90ZXh0Pjx0ZXh0IHg9IjMxNSIgeT0iNzUyIj5VbnRlcm5laG1lbjwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iNDUiIGN5PSI3MjgiIHI9IjgiIGZpbGw9IiMxMTcwNmYiLz48Y2lyY2xlIGN4PSIxMzUiIGN5PSI3MjgiIHI9IjgiIGZpbGw9IiM5YWEwYTYiLz4KICA8Y2lyY2xlIGN4PSIyMjUiIGN5PSI3MjgiIHI9IjgiIGZpbGw9IiM5YWEwYTYiLz48Y2lyY2xlIGN4PSIzMTUiIGN5PSI3MjgiIHI9IjgiIGZpbGw9IiM5YWEwYTYiLz4KPC9zdmc+', deg: 90, name: 'Osten' },
+    sued: { src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgNzc4IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiIiB4MT0iMCIgeTE9IjEiIHgyPSIwIiB5Mj0iMCI+CiAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZjdjZmYiIHN0b3Atb3BhY2l0eT0iLjc1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGY3Y2ZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzYwIiBoZWlnaHQ9Ijc3OCIgZmlsbD0iI2VlZjBlYyIvPgogIDxwYXRoIGQ9Ik02MCwyNTAgcTYwLC0zMCA5MCwyMCBxMTAsNzAgLTUwLDgwIHEtNjAsMCAtNDAsLTEwMHoiIGZpbGw9IiNjZGU4YzkiLz4KICA8cGF0aCBkPSJNMjUwLDUyMCBxNjAsLTIwIDgwLDQwIHEtMjAsNDAgLTcwLDIweiIgZmlsbD0iI2NkZThjOSIvPgogIDxwYXRoIGQ9Ik0tMTAsNDcwIEM4MCw0NDAgMTgwLDUwMCAzNzAsMzgwIiBzdHJva2U9IiNhOWQxZjUiIHN0cm9rZS13aWR0aD0iMTAiIGZpbGw9Im5vbmUiLz4KICA8ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+CiAgICA8cGF0aCBkPSJNLTEwLDQxMCBMMzcwLDMzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxwYXRoIGQ9Ik0yMDAsMTIwIEMxOTAsMjUwIDE3MCwzODAgMTIwLDU2MCIgc3Ryb2tlLXdpZHRoPSIxMiIvPgogICAgPHBhdGggZD0iTTIwLDMwMCBIMzQwIiBzdHJva2Utd2lkdGg9IjciLz48cGF0aCBkPSJNNjAsMjAwIEwzMDAsMTkwIiBzdHJva2Utd2lkdGg9IjciLz4KICAgIDxwYXRoIGQ9Ik0yNjAsMTQwIFY1MjAiIHN0cm9rZS13aWR0aD0iNyIvPjxwYXRoIGQ9Ik05MCwxNjAgVjQ0MCIgc3Ryb2tlLXdpZHRoPSI3Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiM2YjZmNzMiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjIzMCIgeT0iMzUyIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgMjMwIDM1MikiPkhhdXB0c3RyYcOfZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjI3MCIgeT0iMjEwIj5CZXJnd2VnPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iNDcwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjM2M0MDQzIj5HZXJzZmVsZDwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMzkwIiByPSI5IiBmaWxsPSIjZTg3MTBhIi8+PGNpcmNsZSBjeD0iMjkyIiBjeT0iMjUwIiByPSI5IiBmaWxsPSIjMWE3M2U4Ii8+PGNpcmNsZSBjeD0iNzAiIGN5PSIyODAiIHI9IjkiIGZpbGw9IiM4ZTI0YWEiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODAgMzIxKSByb3RhdGUoMTgwKSI+CiAgICAgIDxwYXRoIGQ9Ik0wLDAgTC0yMCwtNTIgQTU1LDU1IDAgMCAxIDIwLC01MiBaIiBmaWxsPSJ1cmwoI2IpIi8+PC9nPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjMyMSIgcj0iMTEiIGZpbGw9IiMxYTczZTgiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIzLjUiLz4KICA8cmVjdCB4PSIxMiIgeT0iNTIiIHdpZHRoPSIzMzYiIGhlaWdodD0iNDQiIHJ4PSIyMiIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZGRkIi8+CiAgPGNpcmNsZSBjeD0iMzgiIGN5PSI3NCIgcj0iOSIgZmlsbD0iIzM0YTg1MyIvPjx0ZXh0IHg9IjU4IiB5PSI4MCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzVmNjM2OCI+SGllciBzdWNoZW48L3RleHQ+CiAgPGNpcmNsZSBjeD0iMzI2IiBjeT0iNzQiIHI9IjE0IiBmaWxsPSIjYzVjYmQzIi8+CiAgPGcgZm9udC1zaXplPSIxMSIgZmlsbD0iIzNjNDA0MyI+PHJlY3QgeD0iMTIiIHk9IjEwNiIgd2lkdGg9IjcwIiBoZWlnaHQ9IjI2IiByeD0iMTMiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIyNCIgeT0iMTIzIj5BcmJlaXQ8L3RleHQ+CiAgICA8cmVjdCB4PSI5MCIgeT0iMTA2IiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjI2IiByeD0iMTMiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIxMDIiIHk9IjEyMyI+TGFkZXN0YXRpb25lbjwvdGV4dD4KICAgIDxyZWN0IHg9IjIwOCIgeT0iMTA2IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjI2IiByeD0iMTMiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIyMjAiIHk9IjEyMyI+UmVzdGF1cmFudHM8L3RleHQ+PC9nPgogIDxjaXJjbGUgY3g9IjMyMiIgY3k9IjQ1MCIgcj0iMjAiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMzIyLDQzOCBsNiwxOCBsLTYsLTQgbC02LDR6IiBmaWxsPSIjM2M0MDQzIi8+CiAgPHJlY3QgeD0iMzAwIiB5PSI0ODgiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgcng9IjEyIiBmaWxsPSIjMTE3MDZmIi8+PHBhdGggZD0iTTMyMiw0OTggbDEyLDEyIGwtMTIsMTIgbC0xMiwtMTJ6IiBmaWxsPSIjZmZmIi8+CiAgPHJlY3QgeT0iNTQ4IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjIzMCIgcng9IjE4IiBmaWxsPSIjZmZmIi8+CiAgPHRleHQgeD0iMjAiIHk9IjU4OCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMjEyNCI+R2Vyc2ZlbGQgKFJow7ZuKTwvdGV4dD4KICA8cmVjdCB4PSIyMCIgeT0iNjEwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjgwIiByeD0iMTAiIGZpbGw9IiNlOWVjZWYiLz4KICA8ZyBmb250LXNpemU9IjExIiBmaWxsPSIjM2M0MDQzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj48dGV4dCB4PSI0NSIgeT0iNzUyIj5Fcmt1bmRlbjwvdGV4dD48dGV4dCB4PSIxMzUiIHk9Ijc1MiI+TWVpbiBNYXBzPC90ZXh0PgogICAgPHRleHQgeD0iMjI1IiB5PSI3NTIiPkJlaXRyYWdlbjwvdGV4dD48dGV4dCB4PSIzMTUiIHk9Ijc1MiI+VW50ZXJuZWhtZW48L3RleHQ+PC9nPgogIDxjaXJjbGUgY3g9IjQ1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjMTE3MDZmIi8+PGNpcmNsZSBjeD0iMTM1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjOWFhMGE2Ii8+CiAgPGNpcmNsZSBjeD0iMjI1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjOWFhMGE2Ii8+PGNpcmNsZSBjeD0iMzE1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjOWFhMGE2Ii8+Cjwvc3ZnPg==', deg: 180, name: 'Süden' },
+    nordwest: { src: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNjAgNzc4IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiIiB4MT0iMCIgeTE9IjEiIHgyPSIwIiB5Mj0iMCI+CiAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZjdjZmYiIHN0b3Atb3BhY2l0eT0iLjc1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGY3Y2ZmIiBzdG9wLW9wYWNpdHk9IjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzYwIiBoZWlnaHQ9Ijc3OCIgZmlsbD0iI2VlZjBlYyIvPgogIDxwYXRoIGQ9Ik02MCwyNTAgcTYwLC0zMCA5MCwyMCBxMTAsNzAgLTUwLDgwIHEtNjAsMCAtNDAsLTEwMHoiIGZpbGw9IiNjZGU4YzkiLz4KICA8cGF0aCBkPSJNMjUwLDUyMCBxNjAsLTIwIDgwLDQwIHEtMjAsNDAgLTcwLDIweiIgZmlsbD0iI2NkZThjOSIvPgogIDxwYXRoIGQ9Ik0tMTAsNDcwIEM4MCw0NDAgMTgwLDUwMCAzNzAsMzgwIiBzdHJva2U9IiNhOWQxZjUiIHN0cm9rZS13aWR0aD0iMTAiIGZpbGw9Im5vbmUiLz4KICA8ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+CiAgICA8cGF0aCBkPSJNLTEwLDQxMCBMMzcwLDMzMCIgc3Ryb2tlLXdpZHRoPSIxMiIvPjxwYXRoIGQ9Ik0yMDAsMTIwIEMxOTAsMjUwIDE3MCwzODAgMTIwLDU2MCIgc3Ryb2tlLXdpZHRoPSIxMiIvPgogICAgPHBhdGggZD0iTTIwLDMwMCBIMzQwIiBzdHJva2Utd2lkdGg9IjciLz48cGF0aCBkPSJNNjAsMjAwIEwzMDAsMTkwIiBzdHJva2Utd2lkdGg9IjciLz4KICAgIDxwYXRoIGQ9Ik0yNjAsMTQwIFY1MjAiIHN0cm9rZS13aWR0aD0iNyIvPjxwYXRoIGQ9Ik05MCwxNjAgVjQ0MCIgc3Ryb2tlLXdpZHRoPSI3Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiM2YjZmNzMiIGZvbnQtc2l6ZT0iMTEiPjx0ZXh0IHg9IjIzMCIgeT0iMzUyIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTIgMjMwIDM1MikiPkhhdXB0c3RyYcOfZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjI3MCIgeT0iMjEwIj5CZXJnd2VnPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iNDcwIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjM2M0MDQzIj5HZXJzZmVsZDwvdGV4dD48L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMzkwIiByPSI5IiBmaWxsPSIjZTg3MTBhIi8+PGNpcmNsZSBjeD0iMjkyIiBjeT0iMjUwIiByPSI5IiBmaWxsPSIjMWE3M2U4Ii8+PGNpcmNsZSBjeD0iNzAiIGN5PSIyODAiIHI9IjkiIGZpbGw9IiM4ZTI0YWEiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxODAgMzIxKSByb3RhdGUoLTQ1KSI+CiAgICAgIDxwYXRoIGQ9Ik0wLDAgTC0yMCwtNTIgQTU1LDU1IDAgMCAxIDIwLC01MiBaIiBmaWxsPSJ1cmwoI2IpIi8+PC9nPgogIDxjaXJjbGUgY3g9IjE4MCIgY3k9IjMyMSIgcj0iMTEiIGZpbGw9IiMxYTczZTgiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIzLjUiLz4KICA8cmVjdCB4PSIxMiIgeT0iNTIiIHdpZHRoPSIzMzYiIGhlaWdodD0iNDQiIHJ4PSIyMiIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZGRkIi8+CiAgPGNpcmNsZSBjeD0iMzgiIGN5PSI3NCIgcj0iOSIgZmlsbD0iIzM0YTg1MyIvPjx0ZXh0IHg9IjU4IiB5PSI4MCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzVmNjM2OCI+SGllciBzdWNoZW48L3RleHQ+CiAgPGNpcmNsZSBjeD0iMzI2IiBjeT0iNzQiIHI9IjE0IiBmaWxsPSIjYzVjYmQzIi8+CiAgPGcgZm9udC1zaXplPSIxMSIgZmlsbD0iIzNjNDA0MyI+PHJlY3QgeD0iMTIiIHk9IjEwNiIgd2lkdGg9IjcwIiBoZWlnaHQ9IjI2IiByeD0iMTMiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIyNCIgeT0iMTIzIj5BcmJlaXQ8L3RleHQ+CiAgICA8cmVjdCB4PSI5MCIgeT0iMTA2IiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjI2IiByeD0iMTMiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIxMDIiIHk9IjEyMyI+TGFkZXN0YXRpb25lbjwvdGV4dD4KICAgIDxyZWN0IHg9IjIwOCIgeT0iMTA2IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjI2IiByeD0iMTMiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIyMjAiIHk9IjEyMyI+UmVzdGF1cmFudHM8L3RleHQ+PC9nPgogIDxjaXJjbGUgY3g9IjMyMiIgY3k9IjQ1MCIgcj0iMjAiIGZpbGw9IiNmZmYiLz48cGF0aCBkPSJNMzIyLDQzOCBsNiwxOCBsLTYsLTQgbC02LDR6IiBmaWxsPSIjM2M0MDQzIi8+CiAgPHJlY3QgeD0iMzAwIiB5PSI0ODgiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgcng9IjEyIiBmaWxsPSIjMTE3MDZmIi8+PHBhdGggZD0iTTMyMiw0OTggbDEyLDEyIGwtMTIsMTIgbC0xMiwtMTJ6IiBmaWxsPSIjZmZmIi8+CiAgPHJlY3QgeT0iNTQ4IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjIzMCIgcng9IjE4IiBmaWxsPSIjZmZmIi8+CiAgPHRleHQgeD0iMjAiIHk9IjU4OCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMjEyNCI+R2Vyc2ZlbGQgKFJow7ZuKTwvdGV4dD4KICA8cmVjdCB4PSIyMCIgeT0iNjEwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjgwIiByeD0iMTAiIGZpbGw9IiNlOWVjZWYiLz4KICA8ZyBmb250LXNpemU9IjExIiBmaWxsPSIjM2M0MDQzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj48dGV4dCB4PSI0NSIgeT0iNzUyIj5Fcmt1bmRlbjwvdGV4dD48dGV4dCB4PSIxMzUiIHk9Ijc1MiI+TWVpbiBNYXBzPC90ZXh0PgogICAgPHRleHQgeD0iMjI1IiB5PSI3NTIiPkJlaXRyYWdlbjwvdGV4dD48dGV4dCB4PSIzMTUiIHk9Ijc1MiI+VW50ZXJuZWhtZW48L3RleHQ+PC9nPgogIDxjaXJjbGUgY3g9IjQ1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjMTE3MDZmIi8+PGNpcmNsZSBjeD0iMTM1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjOWFhMGE2Ii8+CiAgPGNpcmNsZSBjeD0iMjI1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjOWFhMGE2Ii8+PGNpcmNsZSBjeD0iMzE1IiBjeT0iNzI4IiByPSI4IiBmaWxsPSIjOWFhMGE2Ii8+Cjwvc3ZnPg==', deg: -45, name: 'Nordwesten' },
+  };
+  const order = ['nord', 'ost', 'sued', 'nordwest'];
+  const img = document.getElementById('lampe-img');
+  const needle = document.getElementById('needle');
+  const txt = document.getElementById('lampe-text');
+  const buttons = [...document.querySelectorAll('[data-dir]')];
+  let autoTimer = null, autoI = 0;
+
+  function show(dir) {
+    const d = IMG[dir];
+    img.src = d.src;
+    needle.style.transform = `rotate(${d.deg}deg)`;
+    txt.innerHTML = `Blick nach <b>${d.name}</b>`;
+    buttons.forEach(b => b.classList.toggle('on', b.dataset.dir === dir));
+  }
+  buttons.forEach(b => b.addEventListener('click', () => { stopAuto(); show(b.dataset.dir); }));
+  function startAuto() {
+    stopAuto(); autoI = 0; show(order[0]);
+    autoTimer = setInterval(() => { autoI = (autoI + 1) % order.length; show(order[autoI]); }, 2200);
+  }
+  function stopAuto() { clearInterval(autoTimer); autoTimer = null; }
+
+  // Lupe: Ausschnitt um den blauen Punkt (bei 50 % / 41,3 % des Bildes), vierfach vergrößert
+  const lupe = document.getElementById('lupe');
+  lupe.style.backgroundImage = `url(${IMG.nord.src})`;
+  function sizeLupe() {
+    const w = lupe.clientWidth, z = 4;
+    const bw = 360 / 70 * w / 4 * z;            // 70 px Bildausschnitt füllen die Lupe
+    const bh = bw * 778 / 360;
+    lupe.style.backgroundSize = `${bw}px ${bh}px`;
+    lupe.style.backgroundPosition = `${w / 2 - bw * 0.5}px ${w / 2 - bh * 0.413}px`;
+  }
+  window.addEventListener('resize', sizeLupe);
+
+  // ---------- Fahrtanimation (Folie 8) ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const map = document.getElementById('nav-map');
+  const mk = (tag, attrs, parent = map) => {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    parent.appendChild(e); return e;
+  };
+  // Route in Kartenkoordinaten (y nach unten), Start Marktplatz, Ziel Wasserkuppe
+  const R = [[300, 1250], [300, 1050], [560, 1050], [560, 850], [640, 700], [700, 590], [680, 450], [820, 330], [900, 215]];
+  const segLen = R.slice(1).map((p, i) => Math.hypot(p[0] - R[i][0], p[1] - R[i][1]));
+  const cum = segLen.reduce((a, l) => (a.push(a[a.length - 1] + l), a), [0]);
+  const L = cum[cum.length - 1];
+  const KM = 9.8, MIN = 14;
+
+  // Hintergrund: Wald, Fluss, Straßen der Stadt, Berg
+  mk('path', { d: 'M820,620 q160,-40 240,60 q40,140 -80,200 q-150,40 -200,-80 q-20,-110 40,-180z', fill: '#c8e6c9' });
+  mk('path', { d: 'M80,520 q140,-60 240,10 q60,120 -60,170 q-160,30 -200,-60z', fill: '#c8e6c9' });
+  mk('circle', { cx: 900, cy: 215, r: 150, fill: '#dcedc8' });
+  mk('circle', { cx: 900, cy: 215, r: 95, fill: '#cfe3b6' });
+  mk('circle', { cx: 900, cy: 215, r: 45, fill: '#c2d9a4' });
+  mk('path', { d: 'M-100,1150 C150,1120 250,1180 420,1130 S760,1000 1100,1060', fill: 'none', stroke: '#9ecbf2', 'stroke-width': 16 });
+  const side = [
+    'M120,1250 H520', 'M120,1150 H480', 'M180,950 V1350', 'M420,950 V1350', 'M120,1050 H180',
+    'M560,1050 H800', 'M560,850 H380', 'M640,700 L420,560', 'M700,590 L960,520', 'M680,450 L460,330',
+    'M820,330 L1100,380', 'M300,1250 V1400',
+  ];
+  side.forEach(d => mk('path', { d, fill: 'none', stroke: '#fff', 'stroke-width': 14, 'stroke-linecap': 'round' }));
+  const rd = 'M' + R.map(p => p.join(',')).join(' L');
+  mk('path', { d: rd, fill: 'none', stroke: '#fff', 'stroke-width': 22, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+  mk('path', { d: rd, fill: 'none', stroke: '#1a73e8', 'stroke-width': 12, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+  const done = mk('path', { d: rd, fill: 'none', stroke: '#9aa0a6', 'stroke-width': 12, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+  done.setAttribute('stroke-dasharray', `0 ${L + 10}`);
+  // Ziel-Fahne
+  const flag = mk('g', { transform: 'translate(900 215)' });
+  mk('circle', { r: 16, fill: '#d93025', stroke: '#fff', 'stroke-width': 4 }, flag);
+  // Beschriftungen, die beim Drehen aufrecht bleiben
+  const labels = [[250, 1310, 'Gersfeld'], [960, 300, 'Wasserkuppe'], [330, 1240, 'Start']].map(([x, y, t]) => {
+    const g = mk('g', {});
+    const tx = mk('text', { 'text-anchor': 'middle', 'font-size': 24, 'font-weight': 700, fill: '#3c4043', stroke: '#fff', 'stroke-width': 5, 'paint-order': 'stroke' }, g);
+    tx.textContent = t;
+    return { g, x, y };
+  });
+
+  // Abbiegehinweise an den Knickpunkten
+  const turns = [];
+  for (let i = 1; i < R.length - 1; i++) {
+    const a = Math.atan2(R[i][0] - R[i - 1][0], -(R[i][1] - R[i - 1][1]));
+    const b = Math.atan2(R[i + 1][0] - R[i][0], -(R[i + 1][1] - R[i][1]));
+    let d = (b - a) * 180 / Math.PI; d = ((d + 540) % 360) - 180;
+    if (Math.abs(d) < 12) continue;
+    const re = d > 0;
+    turns.push({ at: cum[i], arrow: Math.abs(d) >= 35 ? (re ? '↱' : '↰') : (re ? '↗' : '↖'),
+      text: Math.abs(d) >= 35 ? (re ? 'rechts abbiegen' : 'links abbiegen') : (re ? 'rechts halten' : 'links halten') });
+  }
+
+  const T = 24000, HOLD = 3000;
+  let t0 = null, paused = false, pausedAt = 0, navRaf = null, heading = 0;
+  const fmtKm = km => km >= 1 ? km.toFixed(1).replace('.', ',') + ' km' : Math.round(km * 1000 / 50) * 50 + ' m';
+
+  function posAt(s) {
+    let i = cum.findIndex(c => c > s) - 1; if (i < 0) i = segLen.length - 1;
+    const f = Math.min(1, (s - cum[i]) / segLen[i]);
+    const p = R[i], q = R[i + 1];
+    return { x: p[0] + (q[0] - p[0]) * f, y: p[1] + (q[1] - p[1]) * f, h: Math.atan2(q[0] - p[0], -(q[1] - p[1])) * 180 / Math.PI };
+  }
+  function frame(now) {
+    if (t0 === null) t0 = now;
+    const el = paused ? pausedAt : now - t0;
+    const k = Math.min(1, el / T);
+    const s = k * L;
+    const p = posAt(Math.min(s, L - 0.01));
+    // weich in die neue Richtung drehen
+    let dh = ((p.h - heading + 540) % 360) - 180;
+    heading += dh * 0.08;
+    map.setAttribute('transform', `translate(180 520) rotate(${-heading}) translate(${-p.x} ${-p.y})`);
+    labels.forEach(l => l.g.setAttribute('transform', `translate(${l.x} ${l.y}) rotate(${heading})`));
+    done.setAttribute('stroke-dasharray', `${s} ${L + 10}`);
+    const restKm = KM * (1 - k);
+    const restMin = Math.max(0, Math.ceil(MIN * (1 - k)));
+    document.getElementById('nav-min').textContent = k >= 1 ? 'Ziel erreicht' : `${restMin} Min.`;
+    document.getElementById('nav-rest').textContent = k >= 1 ? 'Wasserkuppe' : `${fmtKm(restKm)} · 19:14`;
+    const nt = turns.find(tn => tn.at > s);
+    const arrow = document.getElementById('nav-arrow'), dist = document.getElementById('nav-dist'), instr = document.getElementById('nav-instr');
+    if (k >= 1) { arrow.textContent = '⚑'; dist.textContent = 'Angekommen'; instr.textContent = 'Ziel liegt vor dir'; }
+    else if (nt) { arrow.textContent = nt.arrow; dist.textContent = fmtKm(KM * (nt.at - s) / L); instr.textContent = nt.text; }
+    else { arrow.textContent = '↑'; dist.textContent = fmtKm(restKm); instr.textContent = 'bis zum Ziel'; }
+    if (!paused && el > T + HOLD) { t0 = now; heading = posAt(0).h; }
+    navRaf = requestAnimationFrame(frame);
+  }
+  function startNav() { stopNav(); t0 = null; paused = false; heading = posAt(0).h; navBtn.textContent = '⏸ Pause'; navRaf = requestAnimationFrame(frame); }
+  function stopNav() { cancelAnimationFrame(navRaf); navRaf = null; }
+  const navBtn = document.getElementById('nav-play');
+  navBtn.addEventListener('click', () => {
+    const now = performance.now();
+    if (paused) { t0 = now - pausedAt; paused = false; navBtn.textContent = '⏸ Pause'; }
+    else { pausedAt = now - t0; paused = true; navBtn.textContent = '▶ Weiter'; }
+  });
+  document.getElementById('nav-restart').addEventListener('click', startNav);
+
+  // ---------- Navigation ----------
+  const steps = s => s.querySelectorAll('.step').length;
+  function render() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+    const s = slides[cur];
+    s.querySelectorAll('.step').forEach((e, i) => e.classList.toggle('shown', i < stepIdx));
+    if (s.dataset.scene === 'lampe') { if (!autoTimer) startAuto(); } else stopAuto();
+    if (s.dataset.scene === 'fahrt') { if (!navRaf) startNav(); } else stopNav();
+    sizeLupe();
+    document.getElementById('count').textContent = `${cur + 1} / ${slides.length}`;
+    document.getElementById('bar').style.width = `${(cur + 1) / slides.length * 100}%`;
+    try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) {}
+  }
+  function next() {
+    if (stepIdx < steps(slides[cur])) stepIdx++;
+    else if (cur < slides.length - 1) { cur++; stepIdx = 0; }
+    render();
+  }
+  function prev() {
+    if (stepIdx > 0) stepIdx--;
+    else if (cur > 0) { cur--; stepIdx = steps(slides[cur]); }
+    render();
+  }
+
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { cur = 0; stepIdx = 0; render(); }
+    else if (e.key === 'End') { cur = slides.length - 1; stepIdx = 0; render(); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
+  });
+  document.addEventListener('click', e => {
+    if (e.target.closest('button')) return;
+    (e.clientX < window.innerWidth / 3) ? prev() : next();
+  });
+
+  const h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= slides.length) cur = h - 1;
+  render();
+})();
+</script>
+</body>
+</html>

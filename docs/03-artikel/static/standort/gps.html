@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wie funktioniert GPS?</title>
+<style>
+  :root {
+    --bg: #0b1324;
+    --bg2: #13203a;
+    --text: #eef2f8;
+    --muted: #9fb0c8;
+    --accent: #f5b942;
+    --sat1: #5ec8f2;
+    --sat2: #8ee08a;
+    --sat3: #f2879a;
+    --sat4: #c9a2f5;
+    --earth: #2f7bd1;
+    --land: #3aa76d;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: radial-gradient(ellipse at 70% 20%, var(--bg2), var(--bg) 70%);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; justify-content: center;
+    padding: 4vh 7vw 9vh;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: clamp(2rem, 5.2vw, 4.2rem); margin: 0 0 .3em; line-height: 1.1; }
+  h2 { font-size: clamp(1.6rem, 3.6vw, 3rem); margin: 0 0 .6em; color: var(--accent); line-height: 1.15; }
+  p, li { font-size: clamp(1.1rem, 2.1vw, 1.8rem); line-height: 1.45; }
+  ul { margin: 0; padding-left: 1.2em; }
+  li { margin-bottom: .45em; }
+  .muted { color: var(--muted); }
+  .big { font-size: clamp(1.4rem, 3vw, 2.6rem); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: center; }
+  .two > svg { width: 100%; max-height: 70vh; }
+  .facts { display: grid; grid-template-columns: auto 1fr; gap: .3em 1em; font-size: clamp(1.05rem, 2vw, 1.7rem); }
+  .facts b { color: var(--accent); text-align: right; white-space: nowrap; }
+  .step { opacity: 0; transition: opacity .5s; }
+  .step.shown { opacity: 1; }
+  .quote {
+    border-left: 6px solid var(--accent); padding: .5em 1em; background: rgba(255,255,255,.05);
+    font-size: clamp(1.2rem, 2.4vw, 2rem); border-radius: 0 10px 10px 0;
+  }
+  .stage { width: 100%; max-height: 62vh; }
+  .controls { display: flex; flex-wrap: wrap; gap: 1em 2em; align-items: center; margin-top: 1em; }
+  input[type=range] { width: min(420px, 70vw); accent-color: var(--accent); }
+  button {
+    font: inherit; font-size: clamp(1rem, 1.8vw, 1.4rem);
+    background: var(--accent); color: #1b1b1b; border: 0; border-radius: 8px;
+    padding: .45em 1em; cursor: pointer;
+  }
+  .readout { font-size: clamp(1.05rem, 2vw, 1.7rem); }
+  .timeline { list-style: none; padding: 0; margin: 0; border-left: 4px solid var(--accent); }
+  .timeline li { position: relative; padding-left: 1.2em; margin-bottom: .55em; font-size: clamp(1rem, 1.85vw, 1.55rem); }
+  .timeline li::before {
+    content: ""; position: absolute; left: -12px; top: .45em; width: 20px; height: 20px;
+    border-radius: 50%; background: var(--bg); border: 4px solid var(--accent);
+  }
+  .timeline b { color: var(--accent); display: inline-block; min-width: 3.4em; }
+  .systems { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2vw; margin: .5em 0 1em; }
+  .sys { background: rgba(255,255,255,.06); border-radius: 12px; padding: .8em; text-align: center; }
+  .sys b { display: block; font-size: clamp(1.1rem, 2.2vw, 1.9rem); color: var(--accent); }
+  .sys span { font-size: clamp(.9rem, 1.6vw, 1.3rem); color: var(--muted); }
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0; height: 6vh;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 3vw; color: var(--muted); font-size: clamp(.8rem, 1.4vw, 1.1rem);
+  }
+  .bar { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--accent); transition: width .3s; }
+  @media (max-width: 700px) {
+    .two, .systems { grid-template-columns: 1fr; }
+    .slide { padding: 3vh 16px 9vh; overflow-y: auto; justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 Titel -->
+<section class="slide">
+  <p class="muted">Digi-Stammtisch Gersfeld · 27. Oktober 2026</p>
+  <h1>Wie weiß mein Handy,<br>wo es ist?</h1>
+  <p class="big">GPS in zehn Minuten: Satelliten, Uhren und ein bisschen Einstein</p>
+  <p class="muted">Weiter mit → oder Leertaste · Vollbild mit F</p>
+</section>
+
+<!-- 2 Satelliten im All -->
+<section class="slide">
+  <h2>Rund 30 Satelliten kreisen um die Erde</h2>
+  <div class="two">
+    <svg viewBox="0 0 500 500" aria-label="Erde mit GPS-Umlaufbahnen">
+      <defs>
+        <radialGradient id="earthg" cx="40%" cy="35%" r="70%">
+          <stop offset="0%" stop-color="#5aa2ea"/><stop offset="100%" stop-color="#1d4f8f"/>
+        </radialGradient>
+      </defs>
+      <g transform="translate(250 250)">
+        <!-- sechs Bahnebenen, schräg gestellt -->
+        <g fill="none" stroke="#9fb0c8" stroke-opacity=".35" stroke-width="1.5">
+          <ellipse rx="215" ry="70" transform="rotate(0)"/>
+          <ellipse rx="215" ry="70" transform="rotate(30)"/>
+          <ellipse rx="215" ry="70" transform="rotate(60)"/>
+          <ellipse rx="215" ry="70" transform="rotate(90)"/>
+          <ellipse rx="215" ry="70" transform="rotate(120)"/>
+          <ellipse rx="215" ry="70" transform="rotate(150)"/>
+        </g>
+        <circle r="52" fill="url(#earthg)"/>
+        <path d="M-30,-25 q15,-12 30,-4 q10,10 -4,18 q-14,6 -10,20 q-14,-4 -16,-34z M10,10 q18,-6 26,8 q-6,16 -22,14z" fill="#3aa76d" opacity=".85"/>
+        <!-- Satelliten auf den Bahnen -->
+        <g id="sats"></g>
+      </g>
+      <text x="250" y="490" text-anchor="middle" fill="#9fb0c8" font-size="15">Im richtigen Maßstab gezeichnet</text>
+    </svg>
+    <div class="facts">
+      <b>20.200 km</b><span>Höhe über der Erde</span>
+      <b>6</b><span>Bahnebenen, je mehrere Satelliten</span>
+      <b>~ 30</b><span>Satelliten aktiv (mindestens 24 nötig)</span>
+      <b>12 Std.</b><span>für eine Runde um die Erde</span>
+      <b>14.000 km/h</b><span>Geschwindigkeit</span>
+      <b>4+</b><span>sind von jedem Ort der Erde aus immer zu sehen</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3 Was senden sie -->
+<section class="slide">
+  <h2>Was ein Satellit ständig ruft</h2>
+  <p class="quote">„Hier ist Satellit Nr. 17.<br>Ich stehe gerade genau <em>hier</em>.<br>Es ist exakt <em>jetzt</em>: 18:52:07,000 000 000 Uhr.“</p>
+  <ul style="margin-top:1em">
+    <li class="step">An Bord ticken <b>Atomuhren</b>, genau auf Milliardstel Sekunden.</li>
+    <li class="step">Das Signal kommt mit <b>Lichtgeschwindigkeit</b>: 300.000 km pro Sekunde.</li>
+    <li class="step">Das Handy <b>hört nur zu</b>. Es sendet nichts an die Satelliten zurück.</li>
+  </ul>
+</section>
+
+<!-- 4 Laufzeit = Entfernung -->
+<section class="slide">
+  <h2>Zeit ist Entfernung</h2>
+  <p class="big">Das Signal ist etwa <b style="color:var(--accent)">0,07 Sekunden</b> unterwegs.</p>
+  <p>Das Handy vergleicht: <em>Wann wurde gesendet?</em> und <em>Wann kam es an?</em><br>
+     Laufzeit × Lichtgeschwindigkeit = Entfernung zum Satelliten.</p>
+  <p class="step quote">Eine Millionstel Sekunde daneben<br>heißt <b>300 Meter</b> daneben.</p>
+</section>
+
+<!-- 5 Ein, zwei, drei Satelliten -->
+<section class="slide" data-scene="tri">
+  <h2>Ein Satellit, zwei, drei</h2>
+  <svg class="stage" viewBox="0 0 900 500" id="tri"></svg>
+  <p class="readout" id="tri-text">Ein Satellit sagt: „Du bist irgendwo auf diesem Kreis.“</p>
+</section>
+
+<!-- 6 Warum vier -->
+<section class="slide" data-scene="clock">
+  <h2>Warum es mindestens vier sein müssen</h2>
+  <svg class="stage" viewBox="0 0 900 500" id="clk"></svg>
+  <div class="controls">
+    <label class="readout">Uhrfehler im Handy:
+      <input type="range" id="bias" min="0" max="60" value="0" step="1">
+    </label>
+    <button id="fix">4. Satellit dazu</button>
+  </div>
+  <p class="readout" id="clk-text">Das Handy hat keine Atomuhr. Schieb mal den Regler.</p>
+</section>
+
+<!-- 7 Vier Unbekannte -->
+<section class="slide">
+  <h2>Vier Fragen, vier Satelliten</h2>
+  <div class="two">
+    <ul>
+      <li>Wo im Osten/Westen? <span class="muted">(Länge)</span></li>
+      <li>Wo im Norden/Süden? <span class="muted">(Breite)</span></li>
+      <li>Wie hoch? <span class="muted">(Höhe)</span></li>
+      <li><b>Wie spät ist es wirklich?</b> <span class="muted">(Uhrfehler des Handys)</span></li>
+    </ul>
+    <div>
+      <p class="big">Vier Unbekannte brauchen<br><b style="color:var(--accent)">vier Messungen.</b></p>
+      <p class="step">Mehr Satelliten machen es genauer.<br>Unter freiem Himmel: etwa <b>5 Meter</b>.</p>
+      <p class="step muted">Im Haus, im Wald, zwischen Felsen wird es ungenauer: Das Signal ist schwach wie eine Glühbirne aus 20.000 km.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8 Einstein -->
+<section class="slide">
+  <h2>Einstein fliegt mit</h2>
+  <ul>
+    <li>Oben ist die Schwerkraft schwächer: Die Uhren gehen <b>schneller</b>.</li>
+    <li>Die Satelliten sind schnell unterwegs: Die Uhren gehen <b>langsamer</b>.</li>
+    <li class="step">Unterm Strich: <b>38 Millionstel Sekunden</b> pro Tag zu schnell.</li>
+    <li class="step">Ohne Korrektur wäre GPS jeden Tag <b>rund 10 km</b> weiter daneben.</li>
+  </ul>
+  <p class="step quote">Die Relativitätstheorie steckt in jedem Handy.</p>
+</section>
+
+<!-- 9 Geschichte -->
+<section class="slide">
+  <h2>Eine kurze Geschichte von GPS</h2>
+  <ul class="timeline">
+    <li><b>1957</b> Sputnik piept. US-Forscher berechnen aus dem Signal seine Bahn und drehen die Idee um: Kennt man die Bahn, findet man den eigenen Ort.</li>
+    <li><b>1964</b> Das erste Satelliten-Navigationssystem „Transit“ hilft U-Booten der US-Marine.</li>
+    <li><b>1973</b> Das US-Verteidigungsministerium beschließt GPS (NAVSTAR).</li>
+    <li><b>1978</b> Der erste GPS-Satellit startet.</li>
+    <li><b>1983</b> Ein koreanisches Passagierflugzeug verirrt sich in den sowjetischen Luftraum und wird abgeschossen. Präsident Reagan verspricht: GPS wird für alle freigegeben.</li>
+    <li><b>1995</b> GPS ist voll einsatzbereit.</li>
+    <li><b>2000</b> Die künstliche Ungenauigkeit für Zivilisten wird abgeschaltet. Statt ~100 m jetzt ~10 m genau.</li>
+    <li><b>2008</b> GPS steckt in den Handys, z. B. im iPhone 3G.</li>
+  </ul>
+</section>
+
+<!-- 10 Heute -->
+<section class="slide">
+  <h2>Heute: vier Systeme, ein Handy</h2>
+  <div class="systems">
+    <div class="sys"><b>GPS</b><span>USA</span></div>
+    <div class="sys"><b>Galileo</b><span>Europa, seit 2016</span></div>
+    <div class="sys"><b>GLONASS</b><span>Russland</span></div>
+    <div class="sys"><b>BeiDou</b><span>China</span></div>
+  </div>
+  <ul>
+    <li>Moderne Handys hören <b>mehrere Systeme gleichzeitig</b>: mehr Satelliten, besserer Empfang.</li>
+    <li>Dazu kommen <b>WLAN und Mobilfunk</b>: Das geht schneller und auch drinnen, ist aber gröber.</li>
+  </ul>
+</section>
+
+<!-- 11 Übergang -->
+<section class="slide">
+  <h2>Und was heißt das für uns?</h2>
+  <p class="big">GPS selbst verrät niemandem, wo du bist.<br>Das Handy <b>empfängt</b> nur.</p>
+  <p class="step big">Verraten wird der Standort erst, wenn eine <b style="color:var(--accent)">App</b> ihn speichert oder weitergibt:<br>
+     Fotos · WhatsApp · Google Maps</p>
+  <p class="step muted big">Genau das schauen wir uns jetzt an.</p>
+</section>
+
+<div class="bar" id="bar"></div>
+<footer><span>Wie funktioniert GPS?</span><span id="count"></span></footer>
+
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.slide')];
+  let cur = 0, stepIdx = 0;
+
+  // ---------- Satelliten auf den Bahnen (Folie 2) ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const satG = document.getElementById('sats');
+  const sats = [];
+  for (let p = 0; p < 6; p++) for (let k = 0; k < 4; k++) {
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('r', 5); c.setAttribute('fill', '#f5b942');
+    satG.appendChild(c);
+    sats.push({ el: c, plane: p * 30 * Math.PI / 180, phase: k * Math.PI / 2 + p * 0.5 });
+  }
+  function orbit(t) {
+    for (const s of sats) {
+      const a = s.phase + t * 0.00025;
+      const x = 215 * Math.cos(a), y = 70 * Math.sin(a);
+      const X = x * Math.cos(s.plane) - y * Math.sin(s.plane);
+      const Y = x * Math.sin(s.plane) + y * Math.cos(s.plane);
+      // hinter der Erde ausblenden
+      const behind = Math.sin(a) < 0 && Math.hypot(X, Y) < 52;
+      s.el.setAttribute('cx', X); s.el.setAttribute('cy', Y);
+      s.el.setAttribute('opacity', behind ? 0 : 1);
+    }
+    requestAnimationFrame(orbit);
+  }
+  requestAnimationFrame(orbit);
+
+  // ---------- Kreise (Folien 5 und 6) ----------
+  const me = { x: 450, y: 398 };
+  const S = [
+    { x: 140, y: 70, col: 'var(--sat1)', n: 1 },
+    { x: 470, y: 40, col: 'var(--sat2)', n: 2 },
+    { x: 790, y: 110, col: 'var(--sat3)', n: 3 },
+  ];
+  const dist = s => Math.hypot(s.x - me.x, s.y - me.y);
+
+  function el(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    parent.appendChild(e); return e;
+  }
+  function ground(svg) {
+    el('path', { d: 'M0,430 Q450,380 900,430 L900,500 L0,500Z', fill: '#2c5f3f' }, svg);
+    el('text', { x: 450, y: 480, 'text-anchor': 'middle', fill: '#cfe8d6', 'font-size': 20 }, svg).textContent = 'Rhön';
+  }
+  function satIcon(svg, s) {
+    const g = el('g', { transform: `translate(${s.x} ${s.y})` }, svg);
+    el('rect', { x: -26, y: -6, width: 16, height: 12, fill: s.col }, g);
+    el('rect', { x: 10, y: -6, width: 16, height: 12, fill: s.col }, g);
+    el('rect', { x: -9, y: -9, width: 18, height: 18, rx: 3, fill: '#eef2f8' }, g);
+    el('text', { x: 0, y: -16, 'text-anchor': 'middle', fill: s.col, 'font-size': 20, 'font-weight': 700 }, g).textContent = s.n;
+    return g;
+  }
+
+  // Folie 5: Schritte 0..2 = 1, 2, 3 Satelliten
+  const tri = document.getElementById('tri');
+  const triText = document.getElementById('tri-text');
+  const triMsgs = [
+    'Ein Satellit sagt: „Du bist irgendwo auf diesem Kreis.“',
+    'Zwei Satelliten: Die Kreise schneiden sich an zwei Stellen.',
+    'Drei Satelliten: Es bleibt nur ein Punkt übrig. Hier bist du!',
+  ];
+  function drawTri(n) {
+    tri.innerHTML = '';
+    ground(tri);
+    S.slice(0, n + 1).forEach(s => {
+      el('circle', { cx: s.x, cy: s.y, r: dist(s), fill: 'none', stroke: s.col, 'stroke-width': 4, 'stroke-opacity': .9 }, tri);
+      el('line', { x1: s.x, y1: s.y, x2: me.x, y2: me.y, stroke: s.col, 'stroke-dasharray': '6 8', 'stroke-width': 2, opacity: .6 }, tri);
+    });
+    S.slice(0, n + 1).forEach(s => satIcon(tri, s));
+    if (n === 2) {
+      el('circle', { cx: me.x, cy: me.y, r: 12, fill: 'var(--accent)' }, tri);
+      el('text', { x: me.x + 20, y: me.y + 7, fill: 'var(--accent)', 'font-size': 24, 'font-weight': 700 }, tri).textContent = 'Gersfeld';
+    }
+    triText.textContent = triMsgs[n];
+  }
+
+  // Folie 6: Regler Uhrfehler, Knopf 4. Satellit
+  const clk = document.getElementById('clk');
+  const clkText = document.getElementById('clk-text');
+  const bias = document.getElementById('bias');
+  const fix = document.getElementById('fix');
+  let anim = null;
+  function drawClk(b, fourth) {
+    clk.innerHTML = '';
+    ground(clk);
+    S.forEach(s => el('circle', { cx: s.x, cy: s.y, r: dist(s) + b, fill: 'none', stroke: s.col, 'stroke-width': 4, 'stroke-opacity': .9 }, clk));
+    S.forEach(s => satIcon(clk, s));
+    if (fourth) satIcon(clk, { x: 60, y: 260, col: 'var(--sat4)', n: 4 });
+    if (b < 1) {
+      el('circle', { cx: me.x, cy: me.y, r: 12, fill: 'var(--accent)' }, clk);
+    } else {
+      el('circle', { cx: me.x, cy: me.y, r: 12, fill: 'none', stroke: '#9fb0c8', 'stroke-dasharray': '4 4', 'stroke-width': 2 }, clk);
+      el('text', { x: me.x, y: me.y + 40, 'text-anchor': 'middle', fill: '#9fb0c8', 'font-size': 20 }, clk).textContent = 'Wo genau?';
+    }
+    const us = b / 20;
+    const m = Math.round(us * 300);
+    if (fourth && b < 1) clkText.innerHTML = 'Mit dem <b>vierten Satelliten</b> rechnet das Handy seinen Uhrfehler heraus. Die Kreise treffen sich wieder.';
+    else if (fourth) clkText.textContent = 'Das Handy rechnet …';
+    else if (b < 1) clkText.textContent = 'Das Handy hat keine Atomuhr. Schieb mal den Regler.';
+    else clkText.innerHTML = `Handy-Uhr ${us.toFixed(2).replace('.', ',')} Millionstel Sekunden daneben → jeder Kreis ${m.toLocaleString('de-DE')} m zu groß. <b>Die Kreise treffen sich nicht mehr.</b>`;
+  }
+  bias.addEventListener('input', () => { cancelAnimationFrame(anim); drawClk(+bias.value, false); });
+  fix.addEventListener('click', () => {
+    cancelAnimationFrame(anim);
+    let b = +bias.value || 45;
+    const go = () => {
+      b = Math.max(0, b - 0.8);
+      bias.value = b;
+      drawClk(b, true);
+      if (b > 0) anim = requestAnimationFrame(go);
+    };
+    go();
+  });
+
+  // ---------- Navigation ----------
+  function steps(s) {
+    if (s.dataset.scene === 'tri') return 2;
+    return s.querySelectorAll('.step').length;
+  }
+  function render() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+    const s = slides[cur];
+    s.querySelectorAll('.step').forEach((e, i) => e.classList.toggle('shown', i < stepIdx));
+    if (s.dataset.scene === 'tri') drawTri(stepIdx);
+    if (s.dataset.scene === 'clock' && stepIdx === 0 && !anim) drawClk(+bias.value, false);
+    document.getElementById('count').textContent = `${cur + 1} / ${slides.length}`;
+    document.getElementById('bar').style.width = `${(cur + 1) / slides.length * 100}%`;
+    try { location.hash = cur + 1; } catch (e) {}
+  }
+  function next() {
+    if (stepIdx < steps(slides[cur])) stepIdx++;
+    else if (cur < slides.length - 1) { cur++; stepIdx = 0; resetClock(); }
+    render();
+  }
+  function prev() {
+    if (stepIdx > 0) stepIdx--;
+    else if (cur > 0) { cur--; stepIdx = steps(slides[cur]); resetClock(); }
+    render();
+  }
+  function resetClock() { cancelAnimationFrame(anim); anim = null; bias.value = 0; drawClk(0, false); }
+
+  document.addEventListener('keydown', e => {
+    // Pfeiltasten auf dem Regler bewegen den Regler, alles andere blättert weiter
+    if (e.target.tagName === 'INPUT' && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { cur = 0; stepIdx = 0; render(); }
+    else if (e.key === 'End') { cur = slides.length - 1; stepIdx = 0; render(); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
+  });
+  document.addEventListener('click', e => {
+    if (e.target.closest('button, input, label')) return;
+    (e.clientX < window.innerWidth / 3) ? prev() : next();
+  });
+
+  const h = parseInt(location.hash.slice(1), 10);
+  if (h >= 1 && h <= slides.length) cur = h - 1;
+  drawClk(0, false);
+  render();
+})();
+</script>
+</body>
+</html>
