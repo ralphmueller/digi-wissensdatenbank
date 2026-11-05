@@ -19,15 +19,13 @@ Finde leicht verständliche **Begriffe**, **Anleitungen** und **Artikel** – je
 
 ### Stammtisch für Digitales
 
-**Dienstag, 27. Oktober 2026 um 18:30 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
+**Dienstag, 24. November 2026 um 18:30 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
 
-Thema: **GPS-Daten und Smartphone** — WhatsApp, Fotos, Google Maps
+Thema: **Offene Fragestunde**
 
 ### Einzelberatung
 
-Mittwoch, 21. Oktober 2026: **ausgebucht**
-
-**Nächster freier Termin: Mittwoch, 4. November 2026, 14:00–16:00 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
+**Nächster Termin: Mittwoch, 18. November 2026, 14:00–16:00 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
 
 [Mehr Informationen](03-artikel/stammtisch-und-einzelberatung.md){ .md-button .md-button--primary }
 
