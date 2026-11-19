@@ -25,7 +25,7 @@ Thema: **Offene Fragestunde**
 
 ### Einzelberatung
 
-**Nächster Termin: Mittwoch, 18. November 2026, 14:00–16:00 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
+**Nächster Termin: Mittwoch, 2. Dezember 2026, 14:00–16:00 Uhr** — Gute Stube, Marktplatz 2, Gersfeld
 
 [Mehr Informationen](03-artikel/stammtisch-und-einzelberatung.md){ .md-button .md-button--primary }
 
