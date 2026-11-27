@@ -4,8 +4,8 @@ slug: screenshot-android
 type: howto
 tags: [smartphone, android, screenshot, huawei]
 author: Digi-Stammtisch Team
-updated: 2026-11-25
-status: draft
+updated: 2026-11-27
+status: published
 related: [fotos-handy-auf-pc]
 ---
 
@@ -65,7 +65,7 @@ Fehlermeldung, die Du jemandem zeigen möchtest. Das Bild landet wie ein Foto in
     „Hey Google, mach einen Screenshot“ geht dort nicht, Tasten und Gesten funktionieren aber genauso.
 
     **Wohin damit?** Auf den PC bringst Du Screenshots wie Fotos, siehe die Anleitung
-    „Fotos vom Handy auf den PC übertragen“. Der Ordner heißt `Pictures` → `Screenshots`.
+    [Fotos vom Handy auf den PC übertragen](fotos-handy-auf-pc.md). Der Ordner heißt `Pictures` → `Screenshots`.
 
     **iPhone zum Vergleich:** Seitentaste und Lauter-Taste gleichzeitig (Modelle mit Face ID) bzw. Home-Taste und
     Seitentaste (Modelle mit Home-Taste).
