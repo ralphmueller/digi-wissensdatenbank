@@ -4,8 +4,8 @@ slug: fotos-handy-auf-pc
 type: howto
 tags: [smartphone, fotos, whatsapp, windows, usb]
 author: Digi-Stammtisch Team
-updated: 2026-11-25
-status: draft
+updated: 2026-11-27
+status: published
 related: [screenshot-android, datensicherung-android]
 ---
 
@@ -30,7 +30,7 @@ Google Pixel …) und braucht weder Internet noch ein Konto.
         | Was | Ordner auf dem Handy |
         |:--|:--|
         | Fotos der Kamera | `DCIM` → `Camera` |
-        | Screenshots | `Pictures` → `Screenshots` (manchmal `DCIM` → `Screenshots`) |
+        | Screenshots ([so macht man sie](screenshot-android.md)) | `Pictures` → `Screenshots` (manchmal `DCIM` → `Screenshots`) |
         | Bilder aus WhatsApp | `Android` → `media` → `com.whatsapp` → `WhatsApp` → `Media` → `WhatsApp Images` |
 
     6. Die gewünschten Bilder markieren (alle: **Strg + A**), **kopieren** (**Strg + C**),
